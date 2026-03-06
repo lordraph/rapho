@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nguvu Health &mdash; Raph Ogunjuyigbe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#F9F7F4;--ink:#111;--accent:#1A6B3C;--muted:#888;--border:#E8E5E0;--card:#E8F0EB}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--accent);color:#fff}
+nav{padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between;position:fixed;top:0;left:0;right:0;z-index:100;transition:background .3s}
+nav.scrolled{background:rgba(249,247,244,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Instrument Serif',serif;font-size:1.3rem;text-decoration:none;color:var(--ink)}.logo:hover{color:var(--accent)}
+.nav-r{display:flex;align-items:center;gap:24px}
+.nav-a{text-decoration:none;font-size:.875rem;font-weight:500;color:var(--muted);transition:color .2s}.nav-a:hover{color:var(--ink)}
+.nav-back{font-size:.875rem;font-weight:500;padding:8px 18px;border:1.5px solid var(--border);border-radius:999px;text-decoration:none;color:var(--ink);transition:all .2s}.nav-back:hover{border-color:var(--ink)}
+.cs-hero{padding:120px 48px 80px;max-width:800px;margin:0 auto;text-align:center}
+.cs-tag{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--accent);margin-bottom:20px;display:block}
+.cs-title{font-family:'Instrument Serif',serif;font-size:clamp(2.75rem,6vw,5.5rem);font-weight:400;line-height:1.02;letter-spacing:-.025em;color:var(--ink);margin-bottom:24px}
+.cs-sub{font-size:1.0625rem;color:var(--muted);line-height:1.8;max-width:540px;margin:0 auto 52px}
+.cs-meta{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);border-radius:16px;overflow:hidden;max-width:800px;margin:0 auto}
+.mi{padding:20px 24px;border-right:1px solid var(--border)}.mi:last-child{border-right:none}
+.mi-l{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);display:block;margin-bottom:5px}
+.mi-v{font-family:'Instrument Serif',serif;font-size:1.05rem;color:var(--ink);line-height:1.3}
+.cover{width:100%;margin:60px 0 0;background:linear-gradient(135deg,#041410,#0f4a2c);min-height:60vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.cover-inner{width:100%;max-width:1200px;margin:0 auto;padding:60px 48px;display:flex;align-items:center;justify-content:center;gap:40px}
+.phone{background:#0d0d0d;border-radius:40px;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.6);width:190px;flex-shrink:0;border:6px solid #222}
+.phone-notch{background:#0d0d0d;height:28px;display:flex;align-items:center;justify-content:center}
+.phone-notch-inner{width:60px;height:16px;background:#111;border-radius:8px}
+.phone-body{background:#041410;aspect-ratio:9/17;display:flex;flex-direction:column;padding:14px;gap:8px}
+.phone-home{background:#0d0d0d;height:24px;display:flex;align-items:center;justify-content:center}
+.phone-home-bar{width:80px;height:4px;background:#333;border-radius:2px}
+.ph-row{height:7px;background:rgba(255,255,255,.15);border-radius:4px}
+.ph-row.s{width:45%}.ph-row.m{width:70%}.ph-row.l{width:100%}
+.prose-section{max-width:680px;margin:0 auto;padding:80px 48px}
+.sec-eye{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.18em;color:var(--accent);margin-bottom:10px;display:block}
+.sec-h{font-family:'Instrument Serif',serif;font-size:clamp(1.6rem,2.8vw,2.25rem);font-weight:400;line-height:1.2;color:var(--ink);margin-bottom:20px}
+.sec-p{font-size:1rem;color:var(--muted);line-height:1.85;margin-bottom:18px}.sec-p:last-child{margin-bottom:0}
+.sec-p strong{color:var(--ink);font-weight:600}
+.pullquote{border-left:3px solid var(--accent);padding:4px 0 4px 24px;margin:32px 0}
+.pullquote p{font-family:'Instrument Serif',serif;font-size:1.35rem;font-weight:400;line-height:1.55;color:var(--ink)}
+.rule{border:none;border-top:1px solid var(--border);margin:0}
+.band{padding:72px 48px}
+.band-inner{max-width:1200px;margin:0 auto}
+/* Maslow pyramid */
+.maslow{display:flex;flex-direction:column;gap:2px;margin:32px 0;max-width:560px}
+.maslow-row{border-radius:8px;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.maslow-lbl{font-size:.875rem;font-weight:600;color:var(--ink)}
+.maslow-sub{font-size:.8125rem;color:var(--muted);line-height:1.5;text-align:right;max-width:260px}
+/* Research themes */
+.theme-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0}
+.theme-card{background:var(--card);border-radius:12px;padding:24px}
+.theme-icon{font-size:1.5rem;margin-bottom:10px;display:block}
+.theme-title{font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:6px}
+.theme-p{font-size:.8125rem;color:var(--muted);line-height:1.6}
+/* Steps */
+.steps-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border)}
+.step-cell{background:var(--bg);padding:36px 40px}
+.step-n{font-family:'Instrument Serif',serif;font-size:3rem;font-weight:400;color:rgba(0,0,0,.06);line-height:1;margin-bottom:12px;display:block}
+.step-title{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:8px}
+.step-p{font-size:.9rem;color:var(--muted);line-height:1.7}
+/* Features */
+.features-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:28px 0}
+.feat-card{background:var(--card);border-radius:12px;padding:24px;border-left:3px solid var(--accent)}
+.feat-title{font-size:.9375rem;font-weight:600;color:var(--ink);margin-bottom:8px}
+.feat-p{font-size:.875rem;color:var(--muted);line-height:1.65}
+/* Annotate */
+.annotate{max-width:1200px;margin:0 auto;padding:80px 48px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.annotate-img{position:sticky;top:88px}
+.annotate-mock{border-radius:16px;overflow:hidden}
+.annotate-body{display:flex;flex-direction:column;gap:36px;padding-top:8px}
+.anno-num{width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-size:.75rem;font-weight:600;display:inline-flex;align-items:center;justify-content:center;margin-bottom:10px}
+.anno-title{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:6px}
+.anno-p{font-size:.9375rem;color:var(--muted);line-height:1.75}
+/* Gallery */
+.gallery-wrap{padding:0 0 64px;overflow:hidden}
+.gallery-head{max-width:1200px;margin:0 auto;padding:64px 48px 28px;display:flex;align-items:center;justify-content:space-between}
+.gallery-title{font-family:'Instrument Serif',serif;font-size:1.4rem;font-weight:400;color:var(--ink)}
+.gallery-hint{font-size:.8rem;color:var(--muted)}
+.gallery-scroll{display:flex;gap:20px;overflow-x:auto;padding:0 48px 24px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;cursor:grab}
+.gallery-scroll:active{cursor:grabbing}
+.gallery-scroll::-webkit-scrollbar{height:3px}
+.gallery-scroll::-webkit-scrollbar-track{background:var(--border)}
+.gallery-scroll::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
+.g-item{flex:0 0 240px;scroll-snap-align:start;border-radius:16px;overflow:hidden;background:var(--card)}
+.g-screen{background:#041410;aspect-ratio:9/17;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px;gap:8px}
+.g-caption{padding:16px 20px;background:#fff}
+.g-caption-title{font-size:.875rem;font-weight:600;color:var(--ink);margin-bottom:3px}
+.g-caption-sub{font-size:.78rem;color:var(--muted)}
+/* Stats */
+.stats-band{background:var(--ink);padding:64px 48px}
+.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.stat-item{padding:0 28px;border-right:1px solid rgba(255,255,255,.1)}.stat-item:first-child{padding-left:0}.stat-item:last-child{border-right:none}
+.stat-val{font-family:'Instrument Serif',serif;font-size:3.2rem;font-weight:400;color:var(--accent);line-height:1;display:block;margin-bottom:8px}
+.stat-lbl{font-size:.8125rem;color:rgba(255,255,255,.45);line-height:1.6}
+.learning{background:var(--card);border-radius:20px;padding:48px;margin:0 48px 80px;max-width:calc(100% - 96px)}
+.learning-eye{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--accent);margin-bottom:16px;display:block}
+.learning-text{font-family:'Instrument Serif',serif;font-size:clamp(1.25rem,2.2vw,1.75rem);font-weight:400;line-height:1.55;color:var(--ink)}
+.next{display:grid;grid-template-columns:1fr 1fr;min-height:320px;overflow:hidden}
+.next-left{background:var(--ink);padding:64px 56px;display:flex;flex-direction:column;justify-content:space-between}
+.next-lbl{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:rgba(255,255,255,.3);margin-bottom:12px;display:block}
+.next-title{font-family:'Instrument Serif',serif;font-size:clamp(1.6rem,2.8vw,2.4rem);font-weight:400;color:#F9F7F4;line-height:1.2}
+.next-btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#fff;padding:13px 26px;border-radius:999px;font-weight:500;text-decoration:none;font-size:.9rem;transition:all .25s;width:fit-content;margin-top:40px}
+.next-btn:hover{filter:brightness(1.1);transform:translateY(-2px)}
+.next-right{background:linear-gradient(135deg,#041410,#0f4a2c);display:flex;align-items:center;justify-content:center}
+footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.ft-copy{font-size:.8rem;color:var(--muted)}
+.ft-links{display:flex;gap:24px}
+.ft-link{font-size:.8125rem;color:var(--muted);text-decoration:none;transition:color .2s}.ft-link:hover{color:var(--ink)}
+@media(max-width:900px){
+  nav{padding:0 20px}.cs-hero{padding:90px 20px 60px}
+  .cs-meta{grid-template-columns:1fr 1fr}.mi:nth-child(2){border-right:none}.mi:nth-child(3){border-top:1px solid var(--border)}.mi:nth-child(4){border-top:1px solid var(--border);border-right:none}
+  .cover-inner{padding:40px 20px}.prose-section{padding:56px 20px}
+  .annotate{grid-template-columns:1fr;padding:56px 20px;gap:40px}.annotate-img{position:static}
+  .band{padding:56px 20px}.steps-grid{grid-template-columns:1fr}.theme-row{grid-template-columns:1fr}.features-grid{grid-template-columns:1fr}
+  .stats-band{padding:48px 20px}.stats-inner{grid-template-columns:1fr 1fr;gap:32px}.stat-item{padding:0;border-right:none}
+  .gallery-head{padding:48px 20px 20px}.gallery-scroll{padding:0 20px 20px}
+  .learning{margin:0 20px 60px;padding:32px 24px;max-width:calc(100% - 40px)}
+  .next{grid-template-columns:1fr}.next-right{display:none}.next-left{padding:48px 24px}
+  footer{padding:24px 20px}
+}
+</style>
+</head>
+<body>
+<nav id="nav">
+  <a href="index.html" class="logo">Raph.</a>
+  <div class="nav-r">
+    <a href="work.html" class="nav-a">Work</a>
+    <a href="about.html" class="nav-a">About</a>
+    <a href="work.html" class="nav-back">&#8592; All work</a>
+  </div>
+</nav>
+
+<header class="cs-hero">
+  <span class="cs-tag">Health Tech &middot; Mobile App &middot; Founded May 2020</span>
+  <h1 class="cs-title">Affordable therapy, anytime, anywhere</h1>
+  <p class="cs-sub">How I designed the first and largest mental health solution for Africans &mdash; from zero to launch in 8 weeks, then scaled to 12,000 users and $200k in funding.</p>
+  <div class="cs-meta">
+    <div class="mi"><span class="mi-l">Role</span><span class="mi-v">Designer &#8594; Product Lead</span></div>
+    <div class="mi"><span class="mi-l">Company</span><span class="mi-v">Nguvu Health</span></div>
+    <div class="mi"><span class="mi-l">Duration</span><span class="mi-v">~18 months</span></div>
+    <div class="mi"><span class="mi-l">Outcome</span><span class="mi-v">12k users &middot; 4.7&#9733;</span></div>
+  </div>
+</header>
+
+<div class="cover">
+  <div class="cover-inner">
+    <div class="phone">
+      <div class="phone-notch"><div class="phone-notch-inner"></div></div>
+      <div class="phone-body">
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="width:28px;height:28px;border-radius:50%;background:rgba(26,107,60,.5)"></div>
+          <div style="flex:1"><div class="ph-row s" style="margin-bottom:4px;background:rgba(255,255,255,.3)"></div><div class="ph-row" style="width:55%;background:rgba(255,255,255,.15)"></div></div>
+        </div>
+        <div style="background:rgba(26,107,60,.25);border:1px solid rgba(26,107,60,.4);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:6px">
+          <div class="ph-row m" style="background:rgba(255,255,255,.2)"></div>
+          <div class="ph-row s" style="background:rgba(255,255,255,.12)"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <div style="background:rgba(255,255,255,.06);border-radius:8px;height:52px"></div>
+          <div style="background:rgba(255,255,255,.06);border-radius:8px;height:52px"></div>
+        </div>
+        <div style="background:rgba(26,107,60,.6);border-radius:8px;height:32px;display:flex;align-items:center;justify-content:center"><div class="ph-row s" style="background:rgba(255,255,255,.5);margin:0"></div></div>
+      </div>
+      <div class="phone-home"><div class="phone-home-bar"></div></div>
+    </div>
+    <div class="phone" style="margin-top:40px;opacity:.65;transform:scale(.9)">
+      <div class="phone-notch"><div class="phone-notch-inner"></div></div>
+      <div class="phone-body" style="gap:10px">
+        <div class="ph-row m" style="background:rgba(255,255,255,.2)"></div>
+        <div style="flex:1;display:flex;align-items:center;justify-content:center">
+          <div style="width:72px;height:72px;border-radius:50%;border:4px solid rgba(26,107,60,.5);display:flex;align-items:center;justify-content:center">
+            <div style="width:44px;height:44px;border-radius:50%;background:rgba(26,107,60,.4)"></div>
+          </div>
+        </div>
+        <div class="ph-row l" style="background:rgba(255,255,255,.06);height:28px;border-radius:6px"></div>
+      </div>
+      <div class="phone-home"><div class="phone-home-bar"></div></div>
+    </div>
+    <div class="phone" style="margin-top:-20px;opacity:.35;transform:scale(.82)">
+      <div class="phone-notch"><div class="phone-notch-inner"></div></div>
+      <div class="phone-body" style="gap:8px">
+        <div class="ph-row s" style="background:rgba(255,255,255,.2)"></div>
+        <div style="display:flex;flex-direction:column;gap:6px;flex:1">
+          <div style="background:rgba(255,255,255,.06);border-radius:6px;height:40px"></div>
+          <div style="background:rgba(255,255,255,.06);border-radius:6px;height:40px"></div>
+          <div style="background:rgba(26,107,60,.3);border-radius:6px;height:40px"></div>
+        </div>
+      </div>
+      <div class="phone-home"><div class="phone-home-bar"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="prose-section">
+  <span class="sec-eye">01 &mdash; Context</span>
+  <h2 class="sec-h">Founded during COVID-19 to solve a structural gap.</h2>
+  <p class="sec-p">Nguvu Health was founded in May 2020, during the global surge in COVID-19 cases &mdash; a moment that brought mental health to the surface across Africa while simultaneously removing in-person access. I was brought in with a specific brief: <strong>make therapy affordable and accessible to Africans, both in Africa and in the Diaspora</strong>, and deliver the Android and iOS designs to the engineering team in 8 weeks.</p>
+  <p class="sec-p">I led the design of the first two versions of the app, collaborating with software engineers, therapists, product marketers, and content developers. In 2022, I became Product Lead and grew the design and product team to five members.</p>
+</div>
+
+<hr class="rule">
+
+<div class="prose-section">
+  <span class="sec-eye">02 &mdash; Research</span>
+  <h2 class="sec-h">Starting with Maslow, then talking to real people.</h2>
+  <p class="sec-p">To understand where mental health sits in human existence, I explored Maslow's hierarchy of needs &mdash; which became a genuine product strategy framework, not just background reading. Mental health is interwoven across all levels.</p>
+  <div class="maslow">
+    <div class="maslow-row" style="background:rgba(26,107,60,.08)"><span class="maslow-lbl">Basic Needs</span><span class="maslow-sub">Users need to feel safe sharing personal information. Emotional security, privacy, and stability must be designed in from the start.</span></div>
+    <div class="maslow-row" style="background:rgba(26,107,60,.13)"><span class="maslow-lbl">Psychological Needs</span><span class="maslow-sub">People need connection and belonging. Design a community experience that reduces social isolation without sacrificing safety.</span></div>
+    <div class="maslow-row" style="background:rgba(26,107,60,.2)"><span class="maslow-lbl">Self-Fulfilment Needs</span><span class="maslow-sub">Build tools that guide users toward balance and personal growth &mdash; not just crisis management.</span></div>
+  </div>
+  <p class="sec-p">Beyond the framework, I spoke with several Africans directly. Three recurring themes emerged:</p>
+  <div class="theme-row">
+    <div class="theme-card"><span class="theme-icon">&#128181;</span><div class="theme-title">Affordability</div><p class="theme-p">Therapy is viewed as a luxury. Many in the target demographic cannot access it at market rate.</p></div>
+    <div class="theme-card"><span class="theme-icon">&#128065;</span><div class="theme-title">Stigmatisation</div><p class="theme-p">Many hesitate to visit a therapist's office for fear of being seen as "mad" by their community.</p></div>
+    <div class="theme-card"><span class="theme-icon">&#128218;</span><div class="theme-title">Education</div><p class="theme-p">Most people are unaware of various mental health issues and the ways they can seek help.</p></div>
+  </div>
+  <div class="pullquote">
+    <p>"I have serious anxiety but COVID-19 restrictions meant I would stop seeing my therapist in-person. I couldn't digitally document my thoughts or share my feelings with people."</p>
+  </div>
+  <p class="sec-p">I also conducted a competitive analysis of existing apps. The consistent finding: they were <strong>too expensive for Africans and had no cultural fit</strong>. Other gaps included lack of appointment scheduling, excessive focus on coaching over therapy, and designs built for meditation rather than therapeutic support.</p>
+</div>
+
+<div class="band" style="background:var(--card)">
+  <div class="band-inner">
+    <span class="sec-eye" style="margin-bottom:12px">03 &mdash; Vision &amp; Goals</span>
+    <h2 class="sec-h" style="max-width:560px;margin-bottom:32px">Four pillars shaped the product direction.</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border)">
+      <div style="background:var(--bg);padding:32px 36px"><div style="font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:8px">&#128181; Build for Affordability</div><p style="font-size:.9rem;color:var(--muted);line-height:1.7">Break down therapy payments by session type (chat, video) and session length. Make cost a choice, not a barrier.</p></div>
+      <div style="background:var(--bg);padding:32px 36px"><div style="font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:8px">&#128101; Build for Community</div><p style="font-size:.9rem;color:var(--muted);line-height:1.7">Create a safe space where users can share openly, feel secure, and support one another anonymously.</p></div>
+      <div style="background:var(--bg);padding:32px 36px"><div style="font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:8px">&#128218; Build for Education</div><p style="font-size:.9rem;color:var(--muted);line-height:1.7">Most users are unaware of their mental health issues. The product must educate, not just treat.</p></div>
+      <div style="background:var(--bg);padding:32px 36px"><div style="font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:8px">&#128274; Build for Security</div><p style="font-size:.9rem;color:var(--muted);line-height:1.7">Develop tools offering emotional security and reducing anxiety. Privacy is non-negotiable.</p></div>
+    </div>
+    <div style="margin-top:28px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px"><div style="font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:6px">Project Goal</div><div style="font-size:.9375rem;color:var(--ink)">Accessible &amp; affordable therapy</div></div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px"><div style="font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:6px">Target</div><div style="font-size:.9375rem;color:var(--ink)">1,000 paid sessions in 6 months &middot; 5,000+ users in a year</div></div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:20px"><div style="font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:6px">Success Metric</div><div style="font-size:.9375rem;color:var(--ink)">Average rating of 4.5</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="annotate">
+  <div class="annotate-img">
+    <div class="annotate-mock" style="background:linear-gradient(160deg,#041410,#0f4a2c)">
+      <div style="padding:24px;display:flex;flex-direction:column;gap:14px;min-height:480px">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;flex-direction:column;gap:5px"><div class="ph-row s" style="background:rgba(255,255,255,.35)"></div><div class="ph-row m" style="background:rgba(255,255,255,.18)"></div></div>
+          <div style="width:32px;height:32px;border-radius:50%;background:rgba(26,107,60,.5)"></div>
+        </div>
+        <div style="background:rgba(26,107,60,.2);border:1px solid rgba(26,107,60,.35);border-radius:12px;padding:16px">
+          <div style="font-size:.6rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px">Free Assessment</div>
+          <div style="display:flex;gap:8px;justify-content:space-between">
+            <div style="background:rgba(255,255,255,.08);border-radius:6px;flex:1;height:40px"></div>
+            <div style="background:rgba(26,107,60,.6);border-radius:6px;flex:1;height:40px"></div>
+            <div style="background:rgba(255,255,255,.08);border-radius:6px;flex:1;height:40px"></div>
+            <div style="background:rgba(255,255,255,.08);border-radius:6px;flex:1;height:40px"></div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <div style="background:rgba(255,255,255,.06);border-radius:8px;height:56px;padding:10px;display:flex;flex-direction:column;gap:5px"><div class="ph-row s" style="background:rgba(255,255,255,.2)"></div><div class="ph-row m" style="background:rgba(255,255,255,.08)"></div></div>
+          <div style="background:rgba(255,255,255,.06);border-radius:8px;height:56px;padding:10px;display:flex;flex-direction:column;gap:5px"><div class="ph-row s" style="background:rgba(255,255,255,.2)"></div><div class="ph-row m" style="background:rgba(255,255,255,.08)"></div></div>
+        </div>
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:.6rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.1em">Rant Room</div>
+          <div class="ph-row l" style="background:rgba(255,255,255,.08);height:32px;border-radius:6px"></div>
+        </div>
+        <div style="background:rgba(26,107,60,.7);border-radius:8px;height:32px;display:flex;align-items:center;justify-content:center"><div class="ph-row s" style="background:rgba(255,255,255,.5);margin:0"></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="annotate-body">
+    <div>
+      <span class="sec-eye">04 &mdash; Solution</span>
+      <h2 class="sec-h">Five features mapped to real user needs.</h2>
+    </div>
+    <div>
+      <div class="anno-num">1</div>
+      <div class="anno-title">Secure onboarding</div>
+      <p class="anno-p">Top-user-benefit model to demonstrate value upfront. Social login or email. PIN security on every login to protect conversations from intrusion &mdash; directly addressing the security need surfaced in research.</p>
+    </div>
+    <div>
+      <div class="anno-num">2</div>
+      <div class="anno-title">Free Assessment quiz</div>
+      <p class="anno-p">Users didn't want to read long articles. Working with our lead therapist, I designed a free assessment quiz that educates users about their mental health and funnels them toward paid sessions. <strong>15% of quiz completers booked a paid session</strong> &mdash; a direct conversion win.</p>
+    </div>
+    <div>
+      <div class="anno-num">3</div>
+      <div class="anno-title">Rant Room, Diary &amp; Mood Tracker</div>
+      <p class="anno-p">The Rant Room mirrors social media but with safety first: anonymous posting, topic filters, restricted comments. The diary supports audio and text. The mood tracker builds daily patterns over time. All three came from the community and self-fulfilment needs.</p>
+    </div>
+    <div>
+      <div class="anno-num">4</div>
+      <div class="anno-title">Affordable therapy scheduling</div>
+      <p class="anno-p">Therapy priced by session type (chat via Firebase, video via Agora) and length &mdash; not a flat subscription. Therapists set availability, users choose. Bookings synced to Google and Apple calendars with push notifications to reduce no-shows.</p>
+    </div>
+    <div>
+      <div class="anno-num">5</div>
+      <div class="anno-title">Design system: "Feelings"</div>
+      <p class="anno-p">Built all components from scratch and documented the full system, naming it <em>Feelings</em>. As more designers joined, my role shifted to maintaining and evolving this system across the growing team.</p>
+    </div>
+  </div>
+</div>
+
+<div class="band" style="background:var(--card)">
+  <div class="band-inner">
+    <span class="sec-eye" style="margin-bottom:16px">05 &mdash; Testing &amp; Iteration</span>
+    <h2 class="sec-h" style="max-width:500px;margin-bottom:28px">Three key changes that came from testing.</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
+      <div style="background:var(--bg);border-radius:12px;padding:24px;border-top:3px solid var(--accent)">
+        <div style="font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:8px">Long articles &#8594; Short assessment</div>
+        <p style="font-size:.8125rem;color:var(--muted);line-height:1.6">80% of testers didn't want to read long articles. Replaced with the free quiz &mdash; which became one of the product's strongest conversion tools.</p>
+      </div>
+      <div style="background:var(--bg);border-radius:12px;padding:24px;border-top:3px solid var(--accent)">
+        <div style="font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:8px">Carousel &#8594; List view for therapists</div>
+        <p style="font-size:.8125rem;color:var(--muted);line-height:1.6">Testers defaulted to choosing the first therapist in a carousel. Switched to list view with expanded profiles so users could make an informed choice.</p>
+      </div>
+      <div style="background:var(--bg);border-radius:12px;padding:24px;border-top:3px solid var(--accent)">
+        <div style="font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:8px">Calendar sync added</div>
+        <p style="font-size:.8125rem;color:var(--muted);line-height:1.6">A participant asked how they'd remember bookings. Built Google and Apple calendar sync with push notifications and email reminders into the booking flow.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="gallery-wrap">
+  <div class="gallery-head">
+    <h3 class="gallery-title">Product screens</h3>
+    <span class="gallery-hint">&#8592; Drag &#8594;</span>
+  </div>
+  <div class="gallery-scroll">
+    <div class="g-item"><div class="g-screen"><div style="width:80%;display:flex;flex-direction:column;gap:8px"><div class="ph-row s" style="background:rgba(255,255,255,.3)"></div><div style="background:rgba(26,107,60,.4);border-radius:8px;height:44px;margin-top:4px"></div><div class="ph-row m" style="background:rgba(255,255,255,.1)"></div></div></div><div class="g-caption"><div class="g-caption-title">Onboarding</div><div class="g-caption-sub">Value-first, PIN secured</div></div></div>
+    <div class="g-item"><div class="g-screen"><div style="width:80%;display:flex;flex-direction:column;gap:10px;text-align:center;align-items:center"><div class="ph-row m" style="background:rgba(255,255,255,.25)"></div><div style="display:flex;gap:8px;justify-content:center;margin-top:4px"><div style="width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.08)"></div><div style="width:34px;height:34px;border-radius:50%;background:rgba(26,107,60,.6)"></div><div style="width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.08)"></div><div style="width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.08)"></div></div></div></div><div class="g-caption"><div class="g-caption-title">Free Assessment quiz</div><div class="g-caption-sub">Educate + convert</div></div></div>
+    <div class="g-item"><div class="g-screen"><div style="width:80%;display:flex;flex-direction:column;gap:8px"><div class="ph-row s" style="background:rgba(255,255,255,.25)"></div><div style="background:rgba(255,255,255,.06);border-radius:8px;height:36px"></div><div style="background:rgba(255,255,255,.06);border-radius:8px;height:36px"></div><div style="background:rgba(26,107,60,.5);border-radius:8px;height:36px"></div></div></div><div class="g-caption"><div class="g-caption-title">Rant Room</div><div class="g-caption-sub">Anonymous, safe community</div></div></div>
+    <div class="g-item"><div class="g-screen"><div style="width:80%;display:flex;flex-direction:column;gap:8px"><div class="ph-row s" style="background:rgba(255,255,255,.3)"></div><div style="display:flex;flex-direction:column;gap:6px;margin-top:4px"><div style="background:rgba(255,255,255,.06);border-radius:6px;padding:10px;display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:50%;background:rgba(26,107,60,.4)"></div><div class="ph-row m" style="flex:1;background:rgba(255,255,255,.12)"></div></div><div style="background:rgba(255,255,255,.06);border-radius:6px;padding:10px;display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.15)"></div><div class="ph-row l" style="flex:1;background:rgba(255,255,255,.08)"></div></div></div></div></div><div class="g-caption"><div class="g-caption-title">Therapist list view</div><div class="g-caption-sub">After carousel &#8594; list change</div></div></div>
+    <div class="g-item"><div class="g-screen"><div style="width:80%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px"><div style="width:52px;height:52px;border-radius:50%;border:3px solid rgba(26,107,60,.5);display:flex;align-items:center;justify-content:center"><div style="width:32px;height:32px;border-radius:50%;background:rgba(26,107,60,.4)"></div></div><div class="ph-row m" style="background:rgba(255,255,255,.2)"></div><div style="background:rgba(26,107,60,.5);border-radius:6px;padding:8px 16px;font-size:.65rem;color:#fff;white-space:nowrap">Book paid session</div></div></div><div class="g-caption"><div class="g-caption-title">Therapy booking</div><div class="g-caption-sub">Calendar-synced sessions</div></div></div>
+  </div>
+</div>
+
+<div class="stats-band">
+  <div class="stats-inner">
+    <div class="stat-item"><span class="stat-val">12k</span><span class="stat-lbl">Users (target was 5,000 in year 1)</span></div>
+    <div class="stat-item"><span class="stat-val">900+</span><span class="stat-lbl">Paid therapy sessions in 6 months (target: 1,000)</span></div>
+    <div class="stat-item"><span class="stat-val">4.7&#9733;</span><span class="stat-lbl">App Store rating (target: 4.5)</span></div>
+    <div class="stat-item"><span class="stat-val">$200k</span><span class="stat-lbl">Raised from ODX accelerator &amp; Google for Startups</span></div>
+  </div>
+</div>
+
+<div style="padding:80px 0 0">
+  <div class="learning">
+    <span class="learning-eye">What I took away</span>
+    <p class="learning-text">"Designing for underserved contexts demands you earn trust before you ask for anything. The security and community features weren't nice-to-haves &mdash; they were the product."</p>
+  </div>
+</div>
+
+<div class="next">
+  <div class="next-left">
+    <div>
+      <span class="next-lbl">Next case study</span>
+      <h3 class="next-title">The research that<br>protected &pound;200m</h3>
+    </div>
+    <a href="case-esim.html" class="next-btn">View eSIM Quick Connect &#8594;</a>
+  </div>
+  <div class="next-right">
+    <div style="text-align:center;color:rgba(255,255,255,.15)">
+      <div style="font-family:'Instrument Serif',serif;font-size:5rem;line-height:1">79%</div>
+      <div style="font-size:.8rem;margin-top:6px">eSIM adoption</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span class="ft-copy">&copy; 2025 Raph Ogunjuyigbe</span>
+  <div class="ft-links">
+    <a href="https://linkedin.com/in/tolulopeogunjuyigbe" target="_blank" class="ft-link">LinkedIn</a>
+    <a href="https://twitter.com/TioluwaniR" target="_blank" class="ft-link">Twitter</a>
+    <a href="mailto:toogunv@gmail.com" class="ft-link">Email</a>
+  </div>
+</footer>
+<script>
+(function(){
+  var nav=document.getElementById('nav');
+  window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>40);});
+  document.querySelectorAll('.gallery-scroll').forEach(function(el){
+    var d=false,sx,sl;
+    el.addEventListener('mousedown',function(e){d=true;sx=e.pageX-el.offsetLeft;sl=el.scrollLeft;});
+    el.addEventListener('mouseleave',function(){d=false;});
+    el.addEventListener('mouseup',function(){d=false;});
+    el.addEventListener('mousemove',function(e){if(!d)return;e.preventDefault();el.scrollLeft=sl-(e.pageX-el.offsetLeft-sx)*1.2;});
+  });
+})();
+</script>
+</body>
+</html>

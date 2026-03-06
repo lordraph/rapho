@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eSIM Quick Connect &mdash; Raph Ogunjuyigbe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#F9F7F4;--ink:#111;--accent:#2A52BE;--muted:#888;--border:#E8E5E0;--card:#E4E8F0}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--accent);color:#fff}
+nav{padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between;position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s}
+nav.scrolled{background:rgba(249,247,244,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Instrument Serif',serif;font-size:1.3rem;text-decoration:none;color:var(--ink)}.logo:hover{color:var(--accent)}
+.nav-r{display:flex;align-items:center;gap:32px}
+.nav-a{text-decoration:none;font-size:.875rem;font-weight:500;color:var(--muted);transition:color .2s}.nav-a:hover{color:var(--ink)}
+.nav-back{font-size:.875rem;font-weight:500;padding:8px 20px;border:1.5px solid var(--border);border-radius:999px;text-decoration:none;color:var(--ink);transition:all .2s;display:flex;align-items:center;gap:6px}.nav-back:hover{border-color:var(--ink)}
+.nda-banner{background:var(--ink);padding:14px 48px;display:flex;align-items:center;justify-content:center;gap:12px;margin-top:64px}
+.nda-banner p{font-size:.875rem;color:rgba(255,255,255,.6);text-align:center}
+.nda-banner strong{color:#fff}
+.cs-hero{max-width:900px;margin:0 auto;padding:60px 48px 80px;text-align:center}
+.cs-tag{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:var(--accent);margin-bottom:24px}
+.cs-title{font-family:'Instrument Serif',serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:400;line-height:1.05;letter-spacing:-.02em;color:var(--ink);margin-bottom:28px}
+.cs-sub{font-size:1.0625rem;color:var(--muted);line-height:1.8;max-width:560px;margin:0 auto 56px}
+.cs-meta{display:flex;justify-content:center;gap:0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.meta-item{flex:1;padding:24px 16px;text-align:center;border-right:1px solid var(--border);max-width:200px}
+.meta-item:last-child{border-right:none}
+.meta-label{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);display:block;margin-bottom:6px}
+.meta-val{font-family:'Instrument Serif',serif;font-size:1.1rem;color:var(--ink)}
+.cs-cover{width:100%;max-width:1100px;margin:0 auto;padding:0 48px 80px}
+.cover-img{width:100%;aspect-ratio:16/9;border-radius:20px;overflow:hidden;background:linear-gradient(135deg,#050810,#0a1235);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px}
+.cover-lock{font-size:3rem;opacity:.4}
+.cover-placeholder{text-align:center;color:rgba(255,255,255,.25)}
+.cover-placeholder p{font-size:.875rem;margin-top:10px}
+.cs-body{max-width:760px;margin:0 auto;padding:0 48px}
+.section{margin-bottom:80px}
+.section-num{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--accent);margin-bottom:12px;display:block}
+.section-title{font-family:'Instrument Serif',serif;font-size:clamp(1.75rem,3vw,2.5rem);font-weight:400;line-height:1.2;color:var(--ink);margin-bottom:24px}
+.section-body p{font-size:1rem;color:var(--muted);line-height:1.85;margin-bottom:20px}
+.section-body p:last-child{margin-bottom:0}
+.section-body strong{color:var(--ink);font-weight:600}
+.divider{border:none;border-top:1px solid var(--border);margin:0 0 80px}
+.callout{background:var(--card);border-radius:16px;padding:32px 36px;margin:32px 0}
+.callout p{font-family:'Instrument Serif',serif;font-size:1.25rem;font-weight:400;line-height:1.6;color:var(--ink)}
+.img-placeholder{width:100%;aspect-ratio:16/9;border-radius:16px;background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;margin:32px 0;border:1.5px dashed var(--border)}
+.img-placeholder span{font-size:.8rem;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+.img-caption{font-size:.8125rem;color:var(--muted);text-align:center;margin-top:-20px;margin-bottom:32px}
+.img-2col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0}
+.steps{display:flex;flex-direction:column;gap:20px;margin:32px 0}
+.step{display:flex;gap:20px;align-items:flex-start}
+.step-num{width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;font-size:.8rem;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step-body h4{font-size:.9375rem;font-weight:600;color:var(--ink);margin-bottom:4px}
+.step-body p{font-size:.9rem;color:var(--muted);line-height:1.7}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:40px 0}
+.stat-card{background:var(--card);border-radius:14px;padding:24px}
+.stat-card .val{font-family:'Instrument Serif',serif;font-size:2.5rem;font-weight:400;color:var(--accent);line-height:1;display:block;margin-bottom:6px}
+.stat-card .lbl{font-size:.8125rem;color:var(--muted);line-height:1.5}
+.access-cta{background:var(--ink);border-radius:16px;padding:36px 40px;margin:40px 0;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.access-cta p{color:rgba(255,255,255,.6);font-size:.9375rem;line-height:1.6;max-width:440px}
+.access-cta strong{color:#fff;display:block;font-size:1rem;margin-bottom:6px}
+.access-btn{display:inline-flex;align-items:center;gap:8px;background:var(--bg);color:var(--ink);padding:12px 24px;border-radius:999px;font-weight:600;text-decoration:none;font-size:.875rem;transition:all .25s;white-space:nowrap;flex-shrink:0}
+.access-btn:hover{background:#fff}
+.next-project{background:var(--ink);padding:72px 48px;margin-top:80px}
+.next-in{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:32px}
+.next-label{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.35);margin-bottom:12px;display:block}
+.next-title{font-family:'Instrument Serif',serif;font-size:clamp(1.75rem,3vw,2.5rem);font-weight:400;color:#F9F7F4;line-height:1.2}
+.next-btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:#fff;padding:13px 26px;border-radius:999px;font-weight:500;text-decoration:none;font-size:.9rem;transition:all .25s;white-space:nowrap;flex-shrink:0}
+.next-btn:hover{filter:brightness(1.15);transform:translateY(-2px)}
+footer{padding:32px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.ft-copy{font-size:.8rem;color:var(--muted)}
+.ft-links{display:flex;gap:24px}
+.ft-link{font-size:.8125rem;color:var(--muted);text-decoration:none;transition:color .2s}.ft-link:hover{color:var(--ink)}
+@media(max-width:768px){
+  nav{padding:0 20px}.nda-banner{padding:14px 20px}.cs-hero{padding:48px 20px 60px}.cs-cover{padding:0 20px 60px}.cs-body{padding:0 20px}
+  .cs-meta{flex-wrap:wrap}.meta-item{min-width:50%;border-bottom:1px solid var(--border)}
+  .img-2col{grid-template-columns:1fr}.stats-row{grid-template-columns:1fr}
+  .access-cta{flex-direction:column}.next-project{padding:56px 20px}.next-in{flex-direction:column;align-items:flex-start}
+  footer{padding:28px 20px}
+}
+</style>
+</head>
+<body>
+<nav id="nav">
+  <a href="index.html" class="logo">Raph.</a>
+  <div class="nav-r">
+    <a href="work.html" class="nav-a">Work</a>
+    <a href="about.html" class="nav-a">About</a>
+    <a href="work.html" class="nav-back">&#8592; Back to work</a>
+  </div>
+</nav>
+
+<div class="nda-banner">
+  <p>&#128274; <strong>This case study is under NDA.</strong> Detailed screens and proprietary research findings are available on request.</p>
+</div>
+
+<header class="cs-hero">
+  <div class="cs-tag">&#9632; Telco &middot; Tesco Mobile</div>
+  <h1 class="cs-title">The research that protected &pound;200m</h1>
+  <p class="cs-sub">A 9-variant usability study that reshaped Tesco Mobile's eSIM strategy &mdash; reducing abandonment risk and setting the direction for a category-defining activation experience.</p>
+  <div class="cs-meta">
+    <div class="meta-item"><span class="meta-label">Role</span><span class="meta-val">Lead UX Researcher</span></div>
+    <div class="meta-item"><span class="meta-label">Duration</span><span class="meta-val">4 months</span></div>
+    <div class="meta-item"><span class="meta-label">Company</span><span class="meta-val">Tesco Mobile</span></div>
+    <div class="meta-item"><span class="meta-label">Outcome</span><span class="meta-val">79% adoption rate</span></div>
+  </div>
+</header>
+
+<div class="cs-cover">
+  <div class="cover-img">
+    <div class="cover-lock">&#128274;</div>
+    <div class="cover-placeholder"><p>Detailed screens available on request</p></div>
+  </div>
+</div>
+
+<main class="cs-body">
+
+  <section class="section">
+    <span class="section-num">01 &mdash; Overview</span>
+    <h2 class="section-title">eSIM: a £200m revenue protection problem.</h2>
+    <div class="section-body">
+      <p>Tesco Mobile was preparing to launch eSIM activation &mdash; a shift away from physical SIM cards that had significant implications for customer acquisition, retention, and revenue. At the time of the project, eSIM represented a substantial and growing share of new activations across the UK market.</p>
+      <p>The risk was clear: <strong>a poor activation experience would drive customers to competitors</strong> at the exact moment they were switching. Getting this right was directly tied to protecting an estimated &pound;200m in at-risk revenue.</p>
+      <p>I was brought in to lead the research programme that would inform the final design direction before any engineering investment was committed.</p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section class="section">
+    <span class="section-num">02 &mdash; Problem Statement</span>
+    <h2 class="section-title">Nobody agreed on what the right experience looked like.</h2>
+    <div class="section-body">
+      <p>There were multiple competing hypotheses across the product, engineering, and commercial teams about what the eSIM activation flow should look like. Some advocated for a minimal, fast-path experience. Others pushed for a more guided, step-by-step flow. There was no shared evidence base.</p>
+      <p>The stakes made this unusually complex. eSIM activation is a technically sensitive process &mdash; errors at any point can brick a device temporarily, creating serious customer service cost and NPS damage. We couldn't afford to ship a direction and iterate.</p>
+    </div>
+    <div class="callout">
+      <p>"We needed a definitive answer, not a best guess. That meant designing a research study that could resolve genuine disagreement across senior stakeholders."</p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section class="section">
+    <span class="section-num">03 &mdash; Research &amp; Process</span>
+    <h2 class="section-title">A 9-variant study. 19 participants. One clear winner.</h2>
+    <div class="section-body">
+      <p>I designed and led a large-scale moderated usability study testing 9 distinct variants of the activation flow across 19 participants. This was the most rigorous study Tesco Mobile had run for a consumer product launch.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Study design</h4>
+          <p>Defined 9 variants covering different combinations of progress indicators, instruction density, error handling approaches, and device guidance. Built a testing matrix to ensure each variable was tested against a control.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>Participant recruitment</h4>
+          <p>Recruited 19 participants across two cohorts: existing Tesco Mobile customers considering upgrade, and prospective switchers. Age range 22&ndash;58, mixed device types (iOS and Android).</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Moderated sessions</h4>
+          <p>Ran 60-minute moderated sessions using realistic prototypes. Tracked task completion, time-on-task, error recovery, and emotional response at key moments.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>Synthesis and recommendation</h4>
+          <p>Synthesised findings into a prioritised recommendation deck presented to product leadership, commercial, and engineering. One variant emerged with clear superiority across all metrics.</p>
+        </div>
+      </div>
+    </div>
+    <div class="img-placeholder">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="2" y="2" width="36" height="36" rx="4" stroke="#B0B8CC" stroke-width="1.5"/></svg>
+      <span>Research framework &mdash; available on request</span>
+    </div>
+    <p class="img-caption">Study design matrix showing the 9 variants and testing criteria</p>
+  </section>
+
+  <hr class="divider">
+
+  <section class="section">
+    <span class="section-num">04 &mdash; Solution &amp; Design</span>
+    <h2 class="section-title">A single flow direction. Designed around the moment of doubt.</h2>
+    <div class="section-body">
+      <p>The winning variant addressed the single biggest finding from the research: <strong>users didn't abandon because of technical complexity, they abandoned because they weren't sure the process was working</strong>. The critical design principle became radical transparency at every stage of the activation.</p>
+      <p>The final recommended direction featured persistent progress visibility, proactive error prevention through device-specific instructions, and a recovery flow that preserved the user's state rather than restarting the process entirely.</p>
+      <p>I worked closely with the product and engineering teams to translate the research findings into a detailed design specification, bridging the gap between what we learned and what could be shipped.</p>
+    </div>
+    <div class="access-cta">
+      <div>
+        <strong>Want to see the screens?</strong>
+        <p>The full prototype, variant breakdown, and final specification are available under NDA. Reach out to request access.</p>
+      </div>
+      <a href="mailto:toogunv@gmail.com" class="access-btn">Request access &#8594;</a>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section class="section">
+    <span class="section-num">05 &mdash; Results &amp; Impact</span>
+    <h2 class="section-title">Research that changed the product direction.</h2>
+    <div class="section-body">
+      <p>The study delivered clear, quantified direction in a situation where the business needed certainty. The findings were adopted in full by product leadership and formed the basis of the shipped experience.</p>
+    </div>
+    <div class="stats-row">
+      <div class="stat-card">
+        <span class="val">79%</span>
+        <span class="lbl">eSIM adoption rate achieved post-launch, above industry benchmark</span>
+      </div>
+      <div class="stat-card">
+        <span class="val">9</span>
+        <span class="lbl">Variants tested, giving leadership confidence in the final direction</span>
+      </div>
+      <div class="stat-card">
+        <span class="val">0</span>
+        <span class="lbl">Post-launch escalations related to activation abandonment in first 30 days</span>
+      </div>
+    </div>
+    <div class="section-body">
+      <p>The study also had a secondary impact: it established a new standard for how Tesco Mobile approaches research-led product decisions. The methodology was adopted as a template for subsequent major feature launches.</p>
+      <p><strong>What I learned:</strong> The most valuable research isn't always the most elegant &mdash; sometimes it's the study designed specifically to resolve a commercial decision, not just validate a design direction.</p>
+    </div>
+  </section>
+
+</main>
+
+<div class="next-project">
+  <div class="next-in">
+    <div>
+      <span class="next-label">Next case study</span>
+      <h3 class="next-title">Giving 184 million migrants<br>a financial identity</h3>
+    </div>
+    <a href="case-ndewo.html" class="next-btn">View Ndewo &#8594;</a>
+  </div>
+</div>
+
+<footer>
+  <span class="ft-copy">&copy; 2025 Raph Ogunjuyigbe</span>
+  <div class="ft-links">
+    <a href="https://linkedin.com/in/tolulopeogunjuyigbe" target="_blank" class="ft-link">LinkedIn</a>
+    <a href="https://twitter.com/TioluwaniR" target="_blank" class="ft-link">Twitter</a>
+    <a href="mailto:toogunv@gmail.com" class="ft-link">Email</a>
+  </div>
+</footer>
+<script>(function(){var n=document.getElementById('nav');window.addEventListener('scroll',function(){n.classList.toggle('scrolled',window.scrollY>40);});})();</script>
+</body>
+</html>

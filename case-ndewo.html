@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ndewo by BetaScore &mdash; Raph Ogunjuyigbe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#F9F7F4;--ink:#111;--accent:#7B3FA0;--muted:#888;--border:#E8E5E0;--card:#EDE8F4}
+body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--accent);color:#fff}
+nav{padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between;position:fixed;top:0;left:0;right:0;z-index:100;transition:background .3s}
+nav.scrolled{background:rgba(249,247,244,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Instrument Serif',serif;font-size:1.3rem;text-decoration:none;color:var(--ink)}.logo:hover{color:var(--accent)}
+.nav-r{display:flex;align-items:center;gap:24px}
+.nav-a{text-decoration:none;font-size:.875rem;font-weight:500;color:var(--muted);transition:color .2s}.nav-a:hover{color:var(--ink)}
+.nav-back{font-size:.875rem;font-weight:500;padding:8px 18px;border:1.5px solid var(--border);border-radius:999px;text-decoration:none;color:var(--ink);transition:all .2s}.nav-back:hover{border-color:var(--ink)}
+.cs-hero{padding:120px 48px 80px;max-width:800px;margin:0 auto;text-align:center}
+.cs-tag{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--accent);margin-bottom:20px;display:block}
+.cs-title{font-family:'Instrument Serif',serif;font-size:clamp(2.75rem,6vw,5.5rem);font-weight:400;line-height:1.02;letter-spacing:-.025em;color:var(--ink);margin-bottom:24px}
+.cs-sub{font-size:1.0625rem;color:var(--muted);line-height:1.8;max-width:540px;margin:0 auto 52px}
+.cs-meta{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);border-radius:16px;overflow:hidden;max-width:800px;margin:0 auto}
+.mi{padding:20px 24px;border-right:1px solid var(--border)}.mi:last-child{border-right:none}
+.mi-l{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);display:block;margin-bottom:5px}
+.mi-v{font-family:'Instrument Serif',serif;font-size:1.05rem;color:var(--ink);line-height:1.3}
+.cover{width:100%;margin:60px 0 0;background:linear-gradient(135deg,#0d0618,#240a4a);min-height:60vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.cover-inner{width:100%;max-width:1200px;margin:0 auto;padding:60px 48px;display:flex;align-items:center;justify-content:center;gap:40px}
+.phone{background:#0d0d0d;border-radius:40px;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.6);width:190px;flex-shrink:0;border:6px solid #222}
+.phone-notch{background:#0d0d0d;height:28px;display:flex;align-items:center;justify-content:center}
+.phone-notch-inner{width:60px;height:16px;background:#111;border-radius:8px}
+.phone-body{background:#0d0618;aspect-ratio:9/17;display:flex;flex-direction:column;padding:14px;gap:9px}
+.phone-home{background:#0d0d0d;height:24px;display:flex;align-items:center;justify-content:center}
+.phone-home-bar{width:80px;height:4px;background:#333;border-radius:2px}
+.ph-row{height:7px;background:rgba(255,255,255,.15);border-radius:4px}
+.ph-row.s{width:45%}.ph-row.m{width:70%}.ph-row.l{width:100%}
+.prose-section{max-width:680px;margin:0 auto;padding:80px 48px}
+.sec-eye{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.18em;color:var(--accent);margin-bottom:10px;display:block}
+.sec-h{font-family:'Instrument Serif',serif;font-size:clamp(1.6rem,2.8vw,2.25rem);font-weight:400;line-height:1.2;color:var(--ink);margin-bottom:20px}
+.sec-p{font-size:1rem;color:var(--muted);line-height:1.85;margin-bottom:18px}.sec-p:last-child{margin-bottom:0}
+.sec-p strong{color:var(--ink);font-weight:600}
+.pullquote{border-left:3px solid var(--accent);padding:4px 0 4px 24px;margin:32px 0}
+.pullquote p{font-family:'Instrument Serif',serif;font-size:1.35rem;font-weight:400;line-height:1.55;color:var(--ink)}
+.rule{border:none;border-top:1px solid var(--border);margin:0}
+.band{padding:72px 48px}
+.band-inner{max-width:1200px;margin:0 auto}
+/* Research stats */
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0}
+.stat-card{background:var(--card);border-radius:12px;padding:24px}
+.stat-big{font-family:'Instrument Serif',serif;font-size:2.4rem;font-weight:400;color:var(--accent);line-height:1;margin-bottom:8px}
+.stat-desc{font-size:.875rem;color:var(--muted);line-height:1.6}
+/* Steps */
+.steps-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border)}
+.step-cell{background:var(--bg);padding:36px 40px}
+.step-n{font-family:'Instrument Serif',serif;font-size:3rem;font-weight:400;color:rgba(0,0,0,.06);line-height:1;margin-bottom:12px;display:block}
+.step-title{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:8px}
+.step-p{font-size:.9rem;color:var(--muted);line-height:1.7}
+/* Features */
+.features-strip{display:flex;gap:2px;background:var(--border);flex-wrap:wrap}
+.feat-block{background:var(--bg);padding:28px 32px;flex:1;min-width:160px}
+.feat-label{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:8px;display:block}
+.feat-title{font-size:.9375rem;font-weight:600;color:var(--ink);margin-bottom:6px}
+.feat-p{font-size:.8rem;color:var(--muted);line-height:1.6}
+/* Annotate */
+.annotate{max-width:1200px;margin:0 auto;padding:80px 48px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.annotate-img{position:sticky;top:88px}
+.annotate-mock{border-radius:16px;overflow:hidden}
+.annotate-body{display:flex;flex-direction:column;gap:36px;padding-top:8px}
+.anno-num{width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-size:.75rem;font-weight:600;display:inline-flex;align-items:center;justify-content:center;margin-bottom:10px}
+.anno-title{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:6px}
+.anno-p{font-size:.9375rem;color:var(--muted);line-height:1.75}
+/* Gallery */
+.gallery-wrap{padding:0 0 64px;overflow:hidden}
+.gallery-head{max-width:1200px;margin:0 auto;padding:64px 48px 28px;display:flex;align-items:center;justify-content:space-between}
+.gallery-title{font-family:'Instrument Serif',serif;font-size:1.4rem;font-weight:400;color:var(--ink)}
+.gallery-hint{font-size:.8rem;color:var(--muted)}
+.gallery-scroll{display:flex;gap:20px;overflow-x:auto;padding:0 48px 24px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;cursor:grab}
+.gallery-scroll:active{cursor:grabbing}
+.gallery-scroll::-webkit-scrollbar{height:3px}
+.gallery-scroll::-webkit-scrollbar-track{background:var(--border)}
+.gallery-scroll::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
+.g-item{flex:0 0 240px;scroll-snap-align:start;border-radius:16px;overflow:hidden;background:var(--card)}
+.g-screen{background:#0d0618;aspect-ratio:9/17;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px}
+.g-caption{padding:16px 20px;background:#fff}
+.g-caption-title{font-size:.875rem;font-weight:600;color:var(--ink);margin-bottom:3px}
+.g-caption-sub{font-size:.78rem;color:var(--muted)}
+/* Stats band */
+.stats-band{background:var(--ink);padding:64px 48px}
+.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.stat-item{padding:0 40px;border-right:1px solid rgba(255,255,255,.1)}.stat-item:first-child{padding-left:0}.stat-item:last-child{border-right:none}
+.stat-val{font-family:'Instrument Serif',serif;font-size:4rem;font-weight:400;color:var(--accent);line-height:1;display:block;margin-bottom:10px}
+.stat-lbl{font-size:.9rem;color:rgba(255,255,255,.45);line-height:1.6}
+.learning{background:var(--card);border-radius:20px;padding:48px;margin:0 48px 80px;max-width:calc(100% - 96px)}
+.learning-eye{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--accent);margin-bottom:16px;display:block}
+.learning-text{font-family:'Instrument Serif',serif;font-size:clamp(1.25rem,2.2vw,1.75rem);font-weight:400;line-height:1.55;color:var(--ink)}
+.next{display:grid;grid-template-columns:1fr 1fr;min-height:320px;overflow:hidden}
+.next-left{background:var(--ink);padding:64px 56px;display:flex;flex-direction:column;justify-content:space-between}
+.next-lbl{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:rgba(255,255,255,.3);margin-bottom:12px;display:block}
+.next-title{font-family:'Instrument Serif',serif;font-size:clamp(1.6rem,2.8vw,2.4rem);font-weight:400;color:#F9F7F4;line-height:1.2}
+.next-btn{display:inline-flex;align-items:center;gap:10px;background:#FF4500;color:#fff;padding:13px 26px;border-radius:999px;font-weight:500;text-decoration:none;font-size:.9rem;transition:all .25s;width:fit-content;margin-top:40px}
+.next-btn:hover{background:#e03d00;transform:translateY(-2px)}
+.next-right{background:linear-gradient(135deg,#0d0618,#240a4a);display:flex;align-items:center;justify-content:center}
+footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.ft-copy{font-size:.8rem;color:var(--muted)}
+.ft-links{display:flex;gap:24px}
+.ft-link{font-size:.8125rem;color:var(--muted);text-decoration:none;transition:color .2s}.ft-link:hover{color:var(--ink)}
+@media(max-width:900px){
+  nav{padding:0 20px}.cs-hero{padding:90px 20px 60px}
+  .cs-meta{grid-template-columns:1fr 1fr}.mi:nth-child(2){border-right:none}.mi:nth-child(3){border-top:1px solid var(--border)}.mi:nth-child(4){border-top:1px solid var(--border);border-right:none}
+  .cover-inner{padding:40px 20px}.prose-section{padding:56px 20px}
+  .annotate{grid-template-columns:1fr;padding:56px 20px;gap:40px}.annotate-img{position:static}
+  .band{padding:56px 20px}.steps-grid{grid-template-columns:1fr}.stat-row{grid-template-columns:1fr}
+  .stats-band{padding:48px 20px}.stats-inner{grid-template-columns:1fr;gap:40px}.stat-item{padding:0;border-right:none;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:32px}.stat-item:last-child{border-bottom:none;padding-bottom:0}
+  .gallery-head{padding:48px 20px 20px}.gallery-scroll{padding:0 20px 20px}
+  .learning{margin:0 20px 60px;padding:32px 24px;max-width:calc(100% - 40px)}
+  .next{grid-template-columns:1fr}.next-right{display:none}.next-left{padding:48px 24px}
+  footer{padding:24px 20px}
+}
+</style>
+</head>
+<body>
+<nav id="nav">
+  <a href="index.html" class="logo">Raph.</a>
+  <div class="nav-r">
+    <a href="work.html" class="nav-a">Work</a>
+    <a href="about.html" class="nav-a">About</a>
+    <a href="work.html" class="nav-back">&#8592; All work</a>
+  </div>
+</nav>
+
+<header class="cs-hero">
+  <span class="cs-tag">Fintech &middot; Consumer + Merchant App &middot; Sole Designer &amp; PM</span>
+  <h1 class="cs-title">Ndewo by BetaScore</h1>
+  <p class="cs-sub">Unlocking financial opportunities for credit invisibles &mdash; migrants whose credit history doesn't cross borders. Consumer app, merchant app, and internal tooling, designed and product-managed solo.</p>
+  <div class="cs-meta">
+    <div class="mi"><span class="mi-l">Role</span><span class="mi-v">Sole Designer &amp; PM</span></div>
+    <div class="mi"><span class="mi-l">Scope</span><span class="mi-v">Consumer + Merchant App</span></div>
+    <div class="mi"><span class="mi-l">Team</span><span class="mi-v">1 mobile dev, 2 backend, 1 frontend</span></div>
+    <div class="mi"><span class="mi-l">Status</span><span class="mi-v">Beta &middot; 500 users</span></div>
+  </div>
+</header>
+
+<div class="cover">
+  <div class="cover-inner">
+    <div class="phone">
+      <div class="phone-notch"><div class="phone-notch-inner"></div></div>
+      <div class="phone-body">
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="width:26px;height:26px;border-radius:50%;background:rgba(123,63,160,.5)"></div>
+          <div style="flex:1"><div class="ph-row s" style="margin-bottom:4px;background:rgba(255,255,255,.3)"></div><div class="ph-row" style="width:55%;background:rgba(255,255,255,.15)"></div></div>
+        </div>
+        <div style="background:rgba(123,63,160,.2);border:1px solid rgba(123,63,160,.4);border-radius:10px;padding:12px;text-align:center">
+          <div style="font-size:.55rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px">BetaScore</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:2rem;color:#fff;opacity:.85;line-height:1">642</div>
+          <div style="background:rgba(255,255,255,.1);border-radius:3px;height:5px;margin-top:8px;position:relative;overflow:hidden">
+            <div style="position:absolute;left:0;top:0;bottom:0;width:64%;background:rgba(123,63,160,.8);border-radius:3px"></div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <div style="background:rgba(255,255,255,.06);border-radius:8px;height:48px;padding:8px;display:flex;flex-direction:column;gap:4px"><div class="ph-row s" style="background:rgba(255,255,255,.2)"></div><div class="ph-row m" style="background:rgba(255,255,255,.08)"></div></div>
+          <div style="background:rgba(255,255,255,.06);border-radius:8px;height:48px;padding:8px;display:flex;flex-direction:column;gap:4px"><div class="ph-row s" style="background:rgba(255,255,255,.2)"></div><div class="ph-row m" style="background:rgba(255,255,255,.08)"></div></div>
+        </div>
+        <div style="background:rgba(123,63,160,.6);border-radius:8px;height:28px"></div>
+      </div>
+      <div class="phone-home"><div class="phone-home-bar"></div></div>
+    </div>
+    <div class="phone" style="margin-top:44px;opacity:.6;transform:scale(.88)">
+      <div class="phone-notch"><div class="phone-notch-inner"></div></div>
+      <div class="phone-body" style="gap:8px">
+        <div class="ph-row m" style="background:rgba(255,255,255,.2)"></div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:7px">
+          <div style="background:rgba(255,255,255,.06);border-radius:6px;height:34px;display:flex;align-items:center;padding:0 10px;gap:8px"><div style="width:14px;height:14px;border-radius:50%;background:rgba(123,63,160,.5)"></div><div class="ph-row m" style="background:rgba(255,255,255,.12);flex:1"></div></div>
+          <div style="background:rgba(255,255,255,.06);border-radius:6px;height:34px;display:flex;align-items:center;padding:0 10px;gap:8px"><div style="width:14px;height:14px;border-radius:50%;background:rgba(123,63,160,.3)"></div><div class="ph-row l" style="background:rgba(255,255,255,.1);flex:1"></div></div>
+          <div style="background:rgba(123,63,160,.2);border:1px solid rgba(123,63,160,.4);border-radius:6px;height:34px;display:flex;align-items:center;padding:0 10px;gap:8px"><div style="width:14px;height:14px;border-radius:50%;background:rgba(123,63,160,.7)"></div><div class="ph-row m" style="background:rgba(255,255,255,.2);flex:1"></div></div>
+        </div>
+      </div>
+      <div class="phone-home"><div class="phone-home-bar"></div></div>
+    </div>
+    <div class="phone" style="margin-top:-10px;opacity:.3;transform:scale(.78)">
+      <div class="phone-notch"><div class="phone-notch-inner"></div></div>
+      <div class="phone-body" style="gap:7px">
+        <div class="ph-row s" style="background:rgba(255,255,255,.2)"></div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:6px">
+          <div style="background:rgba(255,255,255,.05);border-radius:6px;height:36px"></div>
+          <div style="background:rgba(255,255,255,.05);border-radius:6px;height:36px"></div>
+          <div style="background:rgba(123,63,160,.3);border-radius:6px;height:36px"></div>
+        </div>
+      </div>
+      <div class="phone-home"><div class="phone-home-bar"></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="prose-section">
+  <span class="sec-eye">01 &mdash; Context</span>
+  <h2 class="sec-h">Credit invisibles and migrants are excluded from the start.</h2>
+  <p class="sec-p">When individuals relocate to a new country, their credit history doesn't follow them. Migrants become "invisible" to the financial system in their new country &mdash; unable to access credit cards, loans, or mortgages because they have no local history. Businesses serving this demographic also lack the data they need to make informed lending decisions.</p>
+  <p class="sec-p">This data gap creates barriers on both sides. Ndewo was built to close it &mdash; using migrants' existing credit and financial data from their home countries to build a portable financial identity. I was solely responsible for all design work from discovery to delivery, while also product-managing the project.</p>
+  <p class="sec-p">I designed and product-managed the <strong>consumer app</strong> (Android and iOS), the <strong>merchant app</strong> (offering APIs, lending, renting, and verification services), a <strong>company website</strong>, and an <strong>internal tool</strong> for user and business management.</p>
+</div>
+
+<hr class="rule">
+
+<div class="prose-section">
+  <span class="sec-eye">02 &mdash; Research</span>
+  <h2 class="sec-h">Secondary data first. Then real conversations.</h2>
+  <p class="sec-p">I began with secondary research to understand the scale of the problem, grounding the project in published data before speaking to anyone.</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin:28px 0">
+    <div style="background:var(--card);border-radius:12px;padding:20px">
+      <div style="font-family:'Instrument Serif',serif;font-size:2rem;color:var(--accent);line-height:1;margin-bottom:8px">5M+</div>
+      <p style="font-size:.8125rem;color:var(--muted);line-height:1.6">Immigrants "credit invisible" and at risk of financial exclusion <span style="color:rgba(0,0,0,.4);font-size:.75rem;display:block;margin-top:4px">Experian, March 2023</span></p>
+    </div>
+    <div style="background:var(--card);border-radius:12px;padding:20px">
+      <div style="font-family:'Instrument Serif',serif;font-size:2rem;color:var(--accent);line-height:1;margin-bottom:8px">8.8M</div>
+      <p style="font-size:.8125rem;color:var(--muted);line-height:1.6">Customers financial institutions are missing out on serving <span style="color:rgba(0,0,0,.4);font-size:.75rem;display:block;margin-top:4px">Forbes, April 2023</span></p>
+    </div>
+    <div style="background:var(--card);border-radius:12px;padding:20px">
+      <div style="font-family:'Instrument Serif',serif;font-size:2rem;color:var(--accent);line-height:1;margin-bottom:8px">184M</div>
+      <p style="font-size:.8125rem;color:var(--muted);line-height:1.6">People living outside their country of nationality (2.3% of world population) <span style="color:rgba(0,0,0,.4);font-size:.75rem;display:block;margin-top:4px">World Bank, 2023</span></p>
+    </div>
+  </div>
+  <p class="sec-p">Beyond the data, I conducted primary research with <strong>15 migrants</strong> to gather direct insights.</p>
+  <div class="stat-row">
+    <div class="stat-card"><div class="stat-big">30%</div><p class="stat-desc">Tried to apply for credit cards and loans immediately upon arriving in the country</p></div>
+    <div class="stat-card"><div class="stat-big">65%</div><p class="stat-desc">Didn't know their home credit history exists or what makes up a credit file</p></div>
+    <div class="stat-card"><div class="stat-big">40%</div><p class="stat-desc">Don't track their finances and have no insight into their spending</p></div>
+  </div>
+</div>
+
+<div class="band" style="background:var(--card)">
+  <div class="band-inner">
+    <span class="sec-eye" style="margin-bottom:12px">03 &mdash; Vision &amp; Design Principles</span>
+    <h2 class="sec-h" style="max-width:560px;margin-bottom:28px">Make Ndewo the key to unlocking financial opportunities.</h2>
+    <p style="font-size:.9375rem;color:var(--muted);max-width:600px;line-height:1.75;margin-bottom:28px">Four user needs shaped the product scope. Four design principles guided every decision made in the process.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px">
+      <div>
+        <div style="font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:16px">User Needs</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="background:var(--bg);border-radius:10px;padding:14px 18px;font-size:.9rem;color:var(--ink);display:flex;align-items:center;gap:10px"><span style="color:var(--accent);font-weight:600">01</span> Empowered with knowledge about credit</div>
+          <div style="background:var(--bg);border-radius:10px;padding:14px 18px;font-size:.9rem;color:var(--ink);display:flex;align-items:center;gap:10px"><span style="color:var(--accent);font-weight:600">02</span> Ability to see and understand their credit and financial data</div>
+          <div style="background:var(--bg);border-radius:10px;padding:14px 18px;font-size:.9rem;color:var(--ink);display:flex;align-items:center;gap:10px"><span style="color:var(--accent);font-weight:600">03</span> Access to credit and financial services</div>
+          <div style="background:var(--bg);border-radius:10px;padding:14px 18px;font-size:.9rem;color:var(--ink);display:flex;align-items:center;gap:10px"><span style="color:var(--accent);font-weight:600">04</span> Tools to manage finances and gain spending insights</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:16px">Design Principles</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="background:var(--bg);border-radius:10px;padding:14px 18px;font-size:.9rem;color:var(--ink)"><strong>Empowerment through education</strong> &mdash; teach, don't just display</div>
+          <div style="background:var(--bg);border-radius:10px;padding:14px 18px;font-size:.9rem;color:var(--ink)"><strong>Localised insights, global solutions</strong> &mdash; home-country data + new-country opportunity</div>
+          <div style="background:var(--bg);border-radius:10px;padding:14px 18px;font-size:.9rem;color:var(--ink)"><strong>Transparency and trust</strong> &mdash; every data request clearly explained</div>
+          <div style="background:var(--bg);border-radius:10px;padding:14px 18px;font-size:.9rem;color:var(--ink)"><strong>Seamless data integration</strong> &mdash; raw APIs made simple and understandable</div>
+        </div>
+      </div>
+    </div>
+    <div style="background:var(--bg);border-radius:12px;padding:24px;border-left:3px solid var(--accent)">
+      <div style="font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px">A note on technical depth</div>
+      <p style="font-size:.9rem;color:var(--muted);line-height:1.7">To reduce reliance on developers, I learned to run POST, PUT, and GET requests in Postman and read JSON files in VSCode &mdash; pulling raw data directly from credit bureaus, bank APIs, and internally-created algorithms. This allowed me to explore data independently and design interfaces around how it actually behaved, not how I assumed it would.</p>
+    </div>
+  </div>
+</div>
+
+<div class="annotate">
+  <div class="annotate-img">
+    <div class="annotate-mock" style="background:linear-gradient(160deg,#0d0618,#240a4a)">
+      <div style="padding:28px;display:flex;flex-direction:column;gap:16px;min-height:480px">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;flex-direction:column;gap:5px"><div class="ph-row s" style="background:rgba(255,255,255,.35)"></div><div class="ph-row m" style="background:rgba(255,255,255,.18)"></div></div>
+          <div style="width:32px;height:32px;border-radius:50%;background:rgba(123,63,160,.5)"></div>
+        </div>
+        <div style="background:rgba(123,63,160,.15);border:1px solid rgba(123,63,160,.3);border-radius:12px;padding:16px;text-align:center">
+          <div style="font-size:.55rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">BetaScore — merged history</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:2.8rem;color:#fff;opacity:.85;line-height:1">642</div>
+          <div style="background:rgba(255,255,255,.1);height:5px;border-radius:3px;margin-top:10px;position:relative;overflow:hidden"><div style="position:absolute;left:0;top:0;bottom:0;width:64%;background:rgba(123,63,160,.8);border-radius:3px"></div></div>
+          <div style="display:flex;justify-content:space-between;margin-top:4px"><span style="font-size:.5rem;color:rgba(255,255,255,.3)">300</span><span style="font-size:.5rem;color:rgba(255,255,255,.3)">850</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="ph-row s" style="background:rgba(255,255,255,.25)"></div>
+          <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:12px;display:flex;justify-content:space-between;align-items:center"><div class="ph-row m" style="background:rgba(255,255,255,.12);flex:1;margin-right:8px"></div><div style="width:18px;height:18px;border-radius:50%;background:rgba(123,63,160,.6)"></div></div>
+          <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:12px;display:flex;justify-content:space-between;align-items:center"><div class="ph-row l" style="background:rgba(255,255,255,.08);flex:1;margin-right:8px"></div><div style="width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,.1)"></div></div>
+        </div>
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:.6rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.1em">Spend Here — monthly review</div>
+          <div style="display:flex;gap:6px;align-items:flex-end;height:36px">
+            <div style="background:rgba(123,63,160,.3);border-radius:3px;width:16px;height:60%"></div>
+            <div style="background:rgba(123,63,160,.5);border-radius:3px;width:16px;height:80%"></div>
+            <div style="background:rgba(123,63,160,.8);border-radius:3px;width:16px;height:100%"></div>
+            <div style="background:rgba(123,63,160,.4);border-radius:3px;width:16px;height:70%"></div>
+            <div style="background:rgba(123,63,160,.3);border-radius:3px;width:16px;height:50%"></div>
+          </div>
+        </div>
+        <div style="background:rgba(123,63,160,.7);border-radius:8px;padding:12px;text-align:center"><div class="ph-row s" style="background:rgba(255,255,255,.5);margin:0 auto;width:120px"></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="annotate-body">
+    <div>
+      <span class="sec-eye">04 &mdash; Five Features</span>
+      <h2 class="sec-h">Each feature mapped directly to a user need.</h2>
+    </div>
+    <div>
+      <div class="anno-num">1</div>
+      <div class="anno-title">Report &mdash; Bring home credit to the new country</div>
+      <p class="anno-p">I collaborated with the developer to pull credit bureau data in JSON via Postman, extracted the meaningful data points, and organised them into categories users could understand. Presented alongside detailed explanations of what affects their score.</p>
+    </div>
+    <div>
+      <div class="anno-num">2</div>
+      <div class="anno-title">Learn &mdash; AI-assisted financial education</div>
+      <p class="anno-p">Designed with a conversation specialist, mirroring the ChatGPT interface for familiarity. Helps users understand how to establish and maintain a positive credit history. Built for users across all financial literacy levels.</p>
+    </div>
+    <div>
+      <div class="anno-num">3</div>
+      <div class="anno-title">Enrich &mdash; Financial health and spending insights</div>
+      <p class="anno-p">Data extracted from bank statements. Cash flow analysis, spending categories, and a Financial Health Score (algorithm built with the dev team) that shows users how their spending habits affect their credit access.</p>
+    </div>
+    <div>
+      <div class="anno-num">4</div>
+      <div class="anno-title">Synch &mdash; The BetaScore</div>
+      <p class="anno-p">Merges credit histories from the user's previous and current countries to generate a BetaScore. Once integrated, the consolidated report is presented to merchants and lenders &mdash; enabling credit access that was previously impossible.</p>
+    </div>
+    <div>
+      <div class="anno-num">5</div>
+      <div class="anno-title">Offer + Spend Here</div>
+      <p class="anno-p">Once a BetaScore is generated, users can access credit products (cards, loans, car finance, mortgages) from partnered providers. A gamified monthly review (Spend Here) rewards users with points and streaks for reviewing their spending data each month.</p>
+    </div>
+  </div>
+</div>
+
+<div class="band" style="background:var(--card)">
+  <div class="band-inner">
+    <span class="sec-eye" style="margin-bottom:16px">05 &mdash; Testing &amp; Iteration</span>
+    <h2 class="sec-h" style="max-width:500px;margin-bottom:28px">Two rounds of testing shaped two versions of the product.</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
+      <div style="background:var(--bg);border-radius:12px;padding:24px;border-top:3px solid var(--accent)">
+        <div style="font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:8px">Security</div>
+        <p style="font-size:.8125rem;color:var(--muted);line-height:1.6">Testers raised concerns about identity theft. Added explicit security callouts throughout sensitive data flows and designed a clear consent architecture.</p>
+      </div>
+      <div style="background:var(--bg);border-radius:12px;padding:24px;border-top:3px solid var(--accent)">
+        <div style="font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:8px">Accessibility</div>
+        <p style="font-size:.8125rem;color:var(--muted);line-height:1.6">Testers wanted reduced colour usage throughout the app. Toned down the palette, increased contrast ratios, and simplified the visual hierarchy in V2.</p>
+      </div>
+      <div style="background:var(--bg);border-radius:12px;padding:24px;border-top:3px solid var(--accent)">
+        <div style="font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:8px">Financial health depth</div>
+        <p style="font-size:.8125rem;color:var(--muted);line-height:1.6">Testers wanted more data in the financial section. Expanded the Enrich feature to include cash flow analysis, spending targets, and category breakdowns in V2.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="gallery-wrap">
+  <div class="gallery-head">
+    <h3 class="gallery-title">Product screens</h3>
+    <span class="gallery-hint">&#8592; Drag &#8594;</span>
+  </div>
+  <div class="gallery-scroll">
+    <div class="g-item">
+      <div class="g-screen">
+        <div style="width:80%;display:flex;flex-direction:column;gap:8px">
+          <div class="ph-row s" style="background:rgba(255,255,255,.3)"></div>
+          <div style="background:rgba(123,63,160,.15);border:1px solid rgba(123,63,160,.3);border-radius:8px;padding:10px;text-align:center">
+            <div style="font-family:'Instrument Serif',serif;font-size:2rem;color:#fff;opacity:.8;line-height:1">642</div>
+            <div style="background:rgba(255,255,255,.1);height:4px;border-radius:2px;margin-top:6px;position:relative;overflow:hidden"><div style="position:absolute;left:0;top:0;bottom:0;width:64%;background:rgba(123,63,160,.8);border-radius:2px"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="g-caption"><div class="g-caption-title">Report — BetaScore</div><div class="g-caption-sub">Merged credit history</div></div>
+    </div>
+    <div class="g-item">
+      <div class="g-screen">
+        <div style="width:80%;display:flex;flex-direction:column;gap:8px">
+          <div class="ph-row s" style="background:rgba(255,255,255,.25)"></div>
+          <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:10px;display:flex;flex-direction:column;gap:5px"><div class="ph-row m" style="background:rgba(255,255,255,.12)"></div><div class="ph-row l" style="background:rgba(255,255,255,.07)"></div></div>
+          <div style="background:rgba(123,63,160,.15);border:1px solid rgba(123,63,160,.3);border-radius:8px;padding:10px;display:flex;flex-direction:column;gap:5px"><div class="ph-row m" style="background:rgba(255,255,255,.2)"></div><div class="ph-row s" style="background:rgba(255,255,255,.12)"></div></div>
+        </div>
+      </div>
+      <div class="g-caption"><div class="g-caption-title">Learn — AI assistant</div><div class="g-caption-sub">ChatGPT-style familiarity</div></div>
+    </div>
+    <div class="g-item">
+      <div class="g-screen">
+        <div style="width:80%;display:flex;flex-direction:column;gap:8px">
+          <div class="ph-row s" style="background:rgba(255,255,255,.25)"></div>
+          <div style="display:flex;gap:5px;align-items:flex-end;height:48px;margin-top:4px">
+            <div style="background:rgba(123,63,160,.3);border-radius:3px;flex:1;height:55%"></div>
+            <div style="background:rgba(123,63,160,.5);border-radius:3px;flex:1;height:75%"></div>
+            <div style="background:rgba(123,63,160,.8);border-radius:3px;flex:1;height:100%"></div>
+            <div style="background:rgba(123,63,160,.5);border-radius:3px;flex:1;height:80%"></div>
+            <div style="background:rgba(123,63,160,.3);border-radius:3px;flex:1;height:60%"></div>
+            <div style="background:rgba(123,63,160,.4);border-radius:3px;flex:1;height:70%"></div>
+          </div>
+          <div class="ph-row m" style="background:rgba(255,255,255,.12)"></div>
+        </div>
+      </div>
+      <div class="g-caption"><div class="g-caption-title">Enrich — spending view</div><div class="g-caption-sub">Cash flow + categories</div></div>
+    </div>
+    <div class="g-item">
+      <div class="g-screen">
+        <div style="width:80%;display:flex;flex-direction:column;gap:8px">
+          <div class="ph-row s" style="background:rgba(255,255,255,.25)"></div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px">
+            <div style="background:rgba(255,255,255,.06);border-radius:6px;height:32px"></div>
+            <div style="background:rgba(255,255,255,.06);border-radius:6px;height:32px"></div>
+            <div style="background:rgba(123,63,160,.4);border-radius:6px;height:32px"></div>
+          </div>
+        </div>
+      </div>
+      <div class="g-caption"><div class="g-caption-title">Offer — credit products</div><div class="g-caption-sub">Loans, cards, car finance</div></div>
+    </div>
+    <div class="g-item">
+      <div class="g-screen">
+        <div style="width:80%;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px">
+          <div style="width:44px;height:44px;border-radius:50%;background:rgba(123,63,160,.5);display:flex;align-items:center;justify-content:center;font-size:1.2rem">&#127881;</div>
+          <div class="ph-row m" style="background:rgba(255,255,255,.2)"></div>
+          <div style="font-size:.6rem;color:rgba(255,255,255,.4)">+50 pts streak</div>
+        </div>
+      </div>
+      <div class="g-caption"><div class="g-caption-title">Spend Here</div><div class="g-caption-sub">Gamified monthly review</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="stats-band">
+  <div class="stats-inner">
+    <div class="stat-item"><span class="stat-val">500</span><span class="stat-lbl">Beta users onboarded, feedback consistently positive</span></div>
+    <div class="stat-item"><span class="stat-val">Grant</span><span class="stat-lbl">Manchester Growth Company funding for credit-worthiness API</span></div>
+    <div class="stat-item"><span class="stat-val">184M</span><span class="stat-lbl">Addressable market &mdash; people living outside their country of nationality</span></div>
+  </div>
+</div>
+
+<div style="padding:80px 0 0">
+  <div class="learning">
+    <span class="learning-eye">What I took away</span>
+    <p class="learning-text">"Scope ruthlessly when you're the only designer and PM. The features we cut were just as important as the ones we shipped &mdash; a focused, polished v1 is worth more than a broad, unfinished one."</p>
+  </div>
+</div>
+
+<div class="next">
+  <div class="next-left">
+    <div>
+      <span class="next-lbl">Back to the beginning</span>
+      <h3 class="next-title">Making 1:1 conversations<br>very easy</h3>
+    </div>
+    <a href="case-openblend.html" class="next-btn">View OpenBlend &#8594;</a>
+  </div>
+  <div class="next-right">
+    <div style="text-align:center;color:rgba(255,255,255,.15)">
+      <div style="font-family:'Instrument Serif',serif;font-size:5rem;line-height:1">60%</div>
+      <div style="font-size:.8rem;margin-top:6px">booking rate increase</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span class="ft-copy">&copy; 2025 Raph Ogunjuyigbe</span>
+  <div class="ft-links">
+    <a href="https://linkedin.com/in/tolulopeogunjuyigbe" target="_blank" class="ft-link">LinkedIn</a>
+    <a href="https://twitter.com/TioluwaniR" target="_blank" class="ft-link">Twitter</a>
+    <a href="mailto:toogunv@gmail.com" class="ft-link">Email</a>
+  </div>
+</footer>
+<script>
+(function(){
+  var nav=document.getElementById('nav');
+  window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>40);});
+  document.querySelectorAll('.gallery-scroll').forEach(function(el){
+    var d=false,sx,sl;
+    el.addEventListener('mousedown',function(e){d=true;sx=e.pageX-el.offsetLeft;sl=el.scrollLeft;});
+    el.addEventListener('mouseleave',function(){d=false;});
+    el.addEventListener('mouseup',function(){d=false;});
+    el.addEventListener('mousemove',function(e){if(!d)return;e.preventDefault();el.scrollLeft=sl-(e.pageX-el.offsetLeft-sx)*1.2;});
+  });
+})();
+</script>
+</body>
+</html>
