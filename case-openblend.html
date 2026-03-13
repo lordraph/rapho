@@ -63,9 +63,9 @@ nav.scrolled{background:rgba(249,247,244,.96);backdrop-filter:blur(14px);border-
 .step-p{font-size:.9rem;color:var(--muted);line-height:1.7}
 /* Metrics table */
 .metrics-table{width:100%;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:32px 0;font-size:.875rem}
-.mt-head{display:grid;grid-template-columns:1fr 2fr 1.5fr;background:var(--ink);padding:12px 20px;gap:16px}
+.mt-head{display:grid;grid-template-columns:1.5fr 1fr 2fr 1.5fr;background:var(--ink);padding:12px 20px;gap:16px}
 .mt-head span{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.5)}
-.mt-row{display:grid;grid-template-columns:1fr 2fr 1.5fr;padding:14px 20px;gap:16px;border-top:1px solid var(--border)}
+.mt-row{display:grid;grid-template-columns:1.5fr 1fr 2fr 1.5fr;padding:14px 20px;gap:16px;border-top:1px solid var(--border)}
 .mt-row:nth-child(even){background:rgba(0,0,0,.02)}
 .mt-row span{color:var(--muted);line-height:1.5}
 .mt-row span:first-child{font-weight:600;color:var(--ink)}
@@ -98,7 +98,7 @@ nav.scrolled{background:rgba(249,247,244,.96);backdrop-filter:blur(14px);border-
 .gallery-scroll::-webkit-scrollbar-track{background:var(--border)}
 .gallery-scroll::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
 .g-item{flex:0 0 360px;scroll-snap-align:start;border-radius:16px;overflow:hidden;background:var(--card)}
-.g-screen{aspect-ratio:16/10;background:#0a0f1e;display:flex;align-items:center;justify-content:center;padding:20px}
+.g-screen{aspect-ratio:16/10;background:#0a0f1e;display:flex;align-items:center;justify-content:center;padding:0;overflow:hidden;cursor:zoom-in;}
 .g-caption{padding:16px 20px;background:#fff}
 .g-caption-title{font-size:.875rem;font-weight:600;color:var(--ink);margin-bottom:3px}
 .g-caption-sub{font-size:.78rem;color:var(--muted)}
@@ -134,6 +134,32 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
   .next{grid-template-columns:1fr}.next-right{display:none}.next-left{padding:48px 24px}
   footer{padding:24px 20px}.metrics-table{font-size:.78rem}
 }
+
+/* Lightbox */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(8px)}
+.lightbox.open{opacity:1;pointer-events:auto}
+.lightbox img{max-width:90vw;max-height:88vh;border-radius:12px;box-shadow:0 40px 120px rgba(0,0,0,.6);transform:scale(.95);transition:transform .35s}
+.lightbox.open img{transform:scale(1)}
+.lightbox-close{position:absolute;top:24px;right:28px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:1.1rem;width:40px;height:40px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;line-height:1}.lightbox-close:hover{background:rgba(255,255,255,.25)}
+.anno-panel img{cursor:zoom-in;}
+
+/* Lightbox */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(8px)}
+.lightbox.open{opacity:1;pointer-events:auto}
+.lightbox img{max-width:90vw;max-height:88vh;border-radius:12px;box-shadow:0 40px 120px rgba(0,0,0,.6);transform:scale(.95);transition:transform .35s}
+.lightbox.open img{transform:scale(1)}
+.lightbox-close{position:absolute;top:24px;right:28px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:1.1rem;width:40px;height:40px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;line-height:1}.lightbox-close:hover{background:rgba(255,255,255,.25)}
+.anno-panel img{cursor:zoom-in;}
+.g-screen img{cursor:zoom-in;}
+
+/* Lightbox */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(8px)}
+.lightbox.open{opacity:1;pointer-events:auto}
+.lightbox img{max-width:90vw;max-height:88vh;border-radius:12px;box-shadow:0 40px 120px rgba(0,0,0,.6);transform:scale(.95);transition:transform .35s}
+.lightbox.open img{transform:scale(1)}
+.lightbox-close{position:absolute;top:24px;right:28px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:1.1rem;width:40px;height:40px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;line-height:1}.lightbox-close:hover{background:rgba(255,255,255,.25)}
+.anno-panel img{cursor:zoom-in;}
+.g-screen img{cursor:zoom-in;}
 </style>
 </head>
 <body>
@@ -149,9 +175,9 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
 <header class="cs-hero">
   <span class="cs-tag">B2B SaaS &middot; HR Tech &middot; Dec 2023 &ndash; Jul 2024</span>
   <h1 class="cs-title">Making 1:1 conversations very easy</h1>
-  <p class="cs-sub">A complete redesign of OpenBlend's most critical feature &mdash; used for 70,000+ conversations a year &mdash; to transform transactional 1:1s into a genuine performance tool.</p>
+  <p class="cs-sub">A complete redesign of OpenBlend's most critical feature &mdash; used for 700,000+ conversations a year &mdash; to transform transactional 1:1s into a genuine performance tool.</p>
   <div class="cs-meta">
-    <div class="mi"><span class="mi-l">Role</span><span class="mi-v">Sole Designer</span></div>
+    <div class="mi"><span class="mi-l">Role</span><span class="mi-v">Product Designer</span></div>
     <div class="mi"><span class="mi-l">Launched</span><span class="mi-v">Oct 14, 2024</span></div>
     <div class="mi"><span class="mi-l">Company</span><span class="mi-v">OpenBlend</span></div>
     <div class="mi"><span class="mi-l">Outcome</span><span class="mi-v">&#8593; 60% booking rate</span></div>
@@ -159,146 +185,182 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
 </header>
 
 <div class="cover">
-  <div class="cover-inner">
-    <div class="browser">
-      <div class="browser-bar">
-        <div class="b-dot" style="background:#FF5F57"></div>
-        <div class="b-dot" style="background:#FFBD2E"></div>
-        <div class="b-dot" style="background:#28CA41"></div>
-        <div class="b-url"></div>
-      </div>
-      <div class="browser-body">
-        <div style="width:85%;display:flex;flex-direction:column;gap:12px">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
-            <div style="display:flex;flex-direction:column;gap:6px"><div class="ph-row s" style="background:rgba(255,255,255,.3)"></div><div class="ph-row m" style="background:rgba(255,255,255,.15)"></div></div>
-            <div style="background:rgba(255,69,0,.8);border-radius:6px;padding:8px 16px;font-size:.7rem;color:#fff;font-weight:600;white-space:nowrap">Book 1:1</div>
-          </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
-            <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:14px;display:flex;flex-direction:column;gap:7px"><div class="ph-row m" style="background:rgba(255,255,255,.2)"></div><div class="ph-row s"></div><div style="height:22px;background:rgba(255,69,0,.25);border-radius:4px;margin-top:4px"></div></div>
-            <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,69,0,.3);border-radius:8px;padding:14px;display:flex;flex-direction:column;gap:7px"><div class="ph-row m" style="background:rgba(255,255,255,.2)"></div><div class="ph-row s"></div><div style="height:22px;background:rgba(255,69,0,.5);border-radius:4px;margin-top:4px"></div></div>
-            <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:14px;display:flex;flex-direction:column;gap:7px;opacity:.5"><div class="ph-row m"></div><div class="ph-row s"></div></div>
-          </div>
-          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:14px;display:flex;flex-direction:column;gap:8px"><div class="ph-row s" style="background:rgba(255,255,255,.25)"></div><div style="display:flex;gap:8px"><div style="background:rgba(255,69,0,.15);border:1px solid rgba(255,69,0,.3);border-radius:6px;padding:8px 12px;font-size:.65rem;color:rgba(255,255,255,.6);white-space:nowrap">&#10003; Goal</div><div style="background:rgba(255,255,255,.06);border-radius:6px;padding:8px 12px;font-size:.65rem;color:rgba(255,255,255,.4);white-space:nowrap">Reality</div><div style="background:rgba(255,255,255,.06);border-radius:6px;padding:8px 12px;font-size:.65rem;color:rgba(255,255,255,.4);white-space:nowrap">Obstacles</div><div style="background:rgba(255,255,255,.06);border-radius:6px;padding:8px 12px;font-size:.65rem;color:rgba(255,255,255,.4);white-space:nowrap">Way Fwd</div></div></div>
-        </div>
-      </div>
-    </div>
-    <div class="phone">
-      <div class="phone-notch"><div class="phone-notch-inner"></div></div>
-      <div class="phone-body">
-        <div style="display:flex;flex-direction:column;gap:8px">
-          <div class="ph-row s" style="background:rgba(255,255,255,.3)"></div>
-          <div style="background:rgba(255,69,0,.3);border-radius:8px;height:52px"></div>
-          <div class="ph-row l" style="background:rgba(255,255,255,.08);height:36px;border-radius:6px"></div>
-          <div class="ph-row l" style="background:rgba(255,255,255,.08);height:36px;border-radius:6px"></div>
-          <div class="ph-row l" style="background:rgba(255,255,255,.06);height:36px;border-radius:6px"></div>
-        </div>
-      </div>
-      <div class="phone-home"><div class="phone-home-bar"></div></div>
-    </div>
-  </div>
+  <img src="images/openblend/openblend-cover.png" style="width:100%;display:block;margin:0 auto;" alt="OpenBlend cover">
 </div>
 
 <div class="prose-section">
   <span class="sec-eye">01 &mdash; Context</span>
-  <h2 class="sec-h">A tool that wasn't living up to its potential.</h2>
-  <p class="sec-p">Since its 2014 launch, OpenBlend has rapidly gained prominence in the UK's performance management and HR space, facilitating over <strong>70,000 1:1 conversations annually</strong> by 2023. The 1:1 tool, launched in 2018, was the company's most-used and most critical feature &mdash; and the primary reason customers signed up.</p>
+  <h2 class="sec-h">Clunky 1:1 experience affects the quality of 1:1 conversations.</h2>
+  <p class="sec-p">Since its 2014 launch, OpenBlend has rapidly gained prominence in the UK's performance management and HR space, facilitating over <strong>700,000 1:1 conversations annually</strong> by 2023. The 1:1 tool, launched in 2018, was the company's most-used and most critical feature &mdash; and the primary reason customers signed up.</p>
   <p class="sec-p">But it was struggling to gain traction. Managers and employees weren't using it the way it was designed, causing customer churn and becoming the company's main focus for retention. I was the sole designer on this project from December 2023 to July 2024, working closely with a Product Manager &mdash; handling research, design, prototyping, and usability testing end-to-end.</p>
 </div>
+
 
 <hr class="rule">
 
 <div class="prose-section">
   <span class="sec-eye">02 &mdash; Research</span>
   <h2 class="sec-h">Understanding how 1:1s were actually happening.</h2>
-  <p class="sec-p">At the start, we only had feedback from the customer experience team. I partnered with the Product Manager to go deeper, speaking to <strong>14 customers</strong> &mdash; Talents, Managers, and Admins &mdash; from various companies.</p>
+  <p class="sec-p">At the start, we only had feedback from the customer experience team. I partnered with the Product Manager to go deeper, speaking to <strong>50 customers</strong> &mdash; Talents, Managers, and Admins &mdash; from various companies.</p>
   <p class="sec-p">Five clear patterns emerged from those conversations:</p>
-  <p class="sec-p"><strong>Challenging navigation</strong> &mdash; The journey from homepage to direct reports to specific items was long and cumbersome. <strong>Rigid scheduling</strong> &mdash; Booking a 1:1 was difficult enough that customers held meetings outside OpenBlend entirely. <strong>No control over topics</strong> &mdash; Talents and managers couldn't control what they discussed or how often. <strong>No unified agenda view</strong> &mdash; Agendas were prepared separately and not shared, so both parties entered meetings blind. <strong>No way to log conversations</strong> &mdash; Customers were using notepads (digital or paper) to capture outcomes.</p>
+  <ul style="list-style:none;padding:0;margin:0 0 18px;">
+    <li style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px;"><span style="color:var(--accent);font-size:.65rem;flex-shrink:0;line-height:1.85;">✦</span><span class="sec-p" style="margin:0;"><strong>Challenging navigation</strong> — The journey from homepage to direct reports to specific items was long and cumbersome.</span></li>
+    <li style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px;"><span style="color:var(--accent);font-size:.65rem;flex-shrink:0;line-height:1.85;">✦</span><span class="sec-p" style="margin:0;"><strong>Rigid scheduling</strong> — Booking a 1:1 was difficult enough that customers held meetings outside OpenBlend entirely.</span></li>
+    <li style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px;"><span style="color:var(--accent);font-size:.65rem;flex-shrink:0;line-height:1.85;">✦</span><span class="sec-p" style="margin:0;"><strong>No control over topics</strong> — Talents and managers couldn't control what they discussed or how often.</span></li>
+    <li style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px;"><span style="color:var(--accent);font-size:.65rem;flex-shrink:0;line-height:1.85;">✦</span><span class="sec-p" style="margin:0;"><strong>No unified agenda view</strong> — Agendas were prepared separately and not shared, so both parties entered meetings blind.</span></li>
+    <li style="display:flex;align-items:baseline;gap:12px;margin-bottom:0;"><span style="color:var(--accent);font-size:.65rem;flex-shrink:0;line-height:1.85;">✦</span><span class="sec-p" style="margin:0;"><strong>No way to log conversations</strong> — Customers were using notepads (digital or paper) to capture outcomes.</span></li>
+  </ul>
   <div class="pullquote">
     <p>"My manager can't see the agenda I created. I can't create a recurring booking. I am creating notes outside of the OpenBlend system."</p>
   </div>
   <p class="sec-p">I used <strong>Mixpanel</strong> to analyse event data on the current experience, measuring drop-off rates at key points. The data confirmed what users were telling us: most users don't add an agenda before starting a 1:1, book fewer regular meetings than expected, cover only about <strong>45% of agenda topics</strong> during discussions, and rarely take notes.</p>
 </div>
 
+<hr class="rule">
+
+<div class="prose-section">
+  <span class="sec-eye">03 &mdash; Design Strategy</span>
+  <h2 class="sec-h">Simplifying the preparation and guidance <br> of a 1:1 </br> </h2>
+  <p class="sec-p">Before a single screen was designed, I needed to understand users' pain points and where the business was heading. Four questions shaped the strategy:</p>
+  <ul style="list-style:none;padding:0;margin:0 0 24px;">
+    <li style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px;"><span style="color:var(--accent);font-size:.65rem;flex-shrink:0;line-height:1.85;">✦</span><span class="sec-p" style="margin:0;">Why is it important that we improve the 1:1 experience?</span></li>
+    <li style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px;"><span style="color:var(--accent);font-size:.65rem;flex-shrink:0;line-height:1.85;">✦</span><span class="sec-p" style="margin:0;">What would the best 1:1 experience look like?</span></li>
+    <li style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px;"><span style="color:var(--accent);font-size:.65rem;flex-shrink:0;line-height:1.85;">✦</span><span class="sec-p" style="margin:0;">What context do I need to consider in terms of pain points and business objectives?</span></li>
+    <li style="display:flex;align-items:baseline;gap:12px;margin-bottom:0;"><span style="color:var(--accent);font-size:.65rem;flex-shrink:0;line-height:1.85;">✦</span><span class="sec-p" style="margin:0;">What is the dynamic between talent and manager conversations?</span></li>
+  </ul>
+  <p class="sec-p">With those questions answered, I reframed the problem around three design challenges:</p>
+  <ul style="list-style:none;padding:0;margin:0 0 24px;">
+    <li style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px;"><span style="color:var(--accent);font-size:.65rem;flex-shrink:0;line-height:1.85;">✦</span><span class="sec-p" style="margin:0;"><strong>How might we improve the quality of conversations?</strong></span></li>
+    <li style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px;"><span style="color:var(--accent);font-size:.65rem;flex-shrink:0;line-height:1.85;">✦</span><span class="sec-p" style="margin:0;"><strong>How might we increase the quantity of conversations?</strong></span></li>
+    <li style="display:flex;align-items:baseline;gap:12px;margin-bottom:0;"><span style="color:var(--accent);font-size:.65rem;flex-shrink:0;line-height:1.85;">✦</span><span class="sec-p" style="margin:0;"><strong>How might we make preparation genuinely easy?</strong></span></li>
+  </ul>
+  <p class="sec-p">From there, three design principles lit the path forward.</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;background:var(--border);margin:28px 0;border-radius:12px;overflow:hidden;">
+    <div style="background:var(--bg);padding:28px 24px;"><span style="font-family:'Instrument Serif',serif;font-size:2rem;color:var(--accent);display:block;margin-bottom:8px;">01</span><div style="font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:6px;">Design for Retention</div><p style="font-size:.8125rem;color:var(--muted);line-height:1.6;">Every decision had to reduce churn. If it didn't make customers want to stay, it didn't ship.</p></div>
+    <div style="background:var(--bg);padding:28px 24px;border-left:1px solid var(--border);border-right:1px solid var(--border);"><span style="font-family:'Instrument Serif',serif;font-size:2rem;color:var(--accent);display:block;margin-bottom:8px;">02</span><div style="font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:6px;">Design for Quality & Quantity</div><p style="font-size:.8125rem;color:var(--muted);line-height:1.6;">More 1:1s happening more often, with richer conversations — both levers had to move together.</p></div>
+    <div style="background:var(--bg);padding:28px 24px;"><span style="font-family:'Instrument Serif',serif;font-size:2rem;color:var(--accent);display:block;margin-bottom:8px;">03</span><div style="font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:6px;">Design for Ease</div><p style="font-size:.8125rem;color:var(--muted);line-height:1.6;">If it takes effort, people won't do it. Friction was the enemy at every step.</p></div>
+  </div>
+</div>
+
+<hr class="rule">
+
 <div class="band" style="background:var(--card)">
   <div class="band-inner">
-    <span class="sec-eye" style="margin-bottom:16px">03 &mdash; Framework</span>
+    <span class="sec-eye" style="margin-bottom:16px">04 &mdash; Framework</span>
     <h2 class="sec-h" style="max-width:560px;margin-bottom:32px">Mapping the journey into two phases: Prepare &amp; Guide.</h2>
     <div class="metrics-table">
-      <div class="mt-head"><span>Event</span><span>Desired Action</span><span>Metric</span></div>
-      <div class="mt-row"><span><span class="phase-pill phase-prepare">Prepare</span><br>Book 1:1</span><span>Encourage booking regular 1:1s</span><span>1:1 Booking Rate</span></div>
-      <div class="mt-row"><span><span class="phase-pill phase-prepare">Prepare</span><br>Add agenda item</span><span>Make it easier to add and view agenda items</span><span>Agenda Completion Rate</span></div>
-      <div class="mt-row"><span><span class="phase-pill phase-guide">Guide</span><br>Begin 1:1</span><span>Improve the discussion experience</span><span>1:1 Start Rate</span></div>
-      <div class="mt-row"><span><span class="phase-pill phase-guide">Guide</span><br>Discuss agenda items</span><span>Improve flow of conversations</span><span>Agenda Discussion Rate</span></div>
-      <div class="mt-row"><span><span class="phase-pill phase-prepare">Prepare</span><br>Lightbulb CTR</span><span>Encourage users to view Lightbulb before 1:1</span><span>Lightbulb Click-through Rate</span></div>
-      <div class="mt-row"><span><span class="phase-pill phase-guide">Guide</span><br>Note taking</span><span>Make it easy to add notes in 1:1</span><span>Notes Engagement Rate</span></div>
+      <div class="mt-head"><span>Event</span><span>Phase</span><span>Desired Action</span><span>Metric</span></div>
+      <div class="mt-row"><span>Book 1:1</span><span><span class="phase-pill phase-prepare">Prepare</span></span><span>Encourage booking regular 1:1s</span><span>1:1 Booking Rate</span></div>
+      <div class="mt-row"><span>Add agenda item</span><span><span class="phase-pill phase-prepare">Prepare</span></span><span>Make it easier to add and view agenda items</span><span>Agenda Completion Rate</span></div>
+      <div class="mt-row"><span>Begin 1:1</span><span><span class="phase-pill phase-guide">Guide</span></span><span>Improve the discussion experience</span><span>1:1 Start Rate</span></div>
+      <div class="mt-row"><span>Discuss agenda items</span><span><span class="phase-pill phase-guide">Guide</span></span><span>Improve flow of conversations</span><span>Agenda Discussion Rate</span></div>
+      <div class="mt-row"><span>Lightbulb CTR</span><span><span class="phase-pill phase-prepare">Prepare</span></span><span>Encourage users to view Lightbulb before 1:1</span><span>Lightbulb Click-through Rate</span></div>
+      <div class="mt-row"><span>Note taking</span><span><span class="phase-pill phase-guide">Guide</span></span><span>Make it easy to add notes in 1:1</span><span>Notes Engagement Rate</span></div>
     </div>
     <p style="font-size:.8125rem;color:var(--muted);margin-top:8px">* Actual metric values omitted for confidentiality</p>
   </div>
 </div>
 
+<style>
+.anno-panel{position:absolute;inset:0;opacity:0;transition:opacity .45s ease;pointer-events:none}
+.anno-panel.active{opacity:1;pointer-events:auto}
+.anno-item{transition:all .2s;border-radius:12px;padding:16px;margin:-16px;opacity:.45}
+.anno-item:hover{opacity:.75;background:rgba(0,0,0,.03)}
+.anno-item.active-item{opacity:1;background:rgba(0,0,0,.04)}
+.anno-item.active-item .anno-num{background:var(--accent)}
+</style>
+
 <div class="annotate">
   <div class="annotate-img">
-    <div class="annotate-mock" style="background:linear-gradient(160deg,#0a0f1e,#0d2050)">
-      <div style="padding:28px;display:flex;flex-direction:column;gap:16px;min-height:480px">
-        <div style="display:flex;align-items:center;justify-content:space-between">
-          <div style="display:flex;flex-direction:column;gap:5px"><div class="ph-row s" style="background:rgba(255,255,255,.35)"></div><div class="ph-row m" style="background:rgba(255,255,255,.18)"></div></div>
-          <div style="background:rgba(255,69,0,.8);border-radius:6px;padding:8px 14px;font-size:.7rem;color:#fff;font-weight:600">Book 1:1</div>
-        </div>
-        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:8px">
-          <div style="font-size:.65rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px">Smart suggestions</div>
-          <div style="background:rgba(255,69,0,.15);border:1px solid rgba(255,69,0,.3);border-radius:6px;padding:10px;display:flex;align-items:center;gap:8px"><div style="width:16px;height:16px;border-radius:50%;background:rgba(255,69,0,.6);flex-shrink:0"></div><div class="ph-row m" style="background:rgba(255,255,255,.15);flex:1"></div></div>
-          <div style="background:rgba(255,255,255,.06);border-radius:6px;padding:10px;display:flex;align-items:center;gap:8px"><div style="width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,.15);flex-shrink:0"></div><div class="ph-row l" style="background:rgba(255,255,255,.1);flex:1"></div></div>
-          <div style="background:rgba(255,255,255,.06);border-radius:6px;padding:10px;display:flex;align-items:center;gap:8px"><div style="width:16px;height:16px;border-radius:50%;background:rgba(255,255,255,.15);flex-shrink:0"></div><div class="ph-row m" style="background:rgba(255,255,255,.08);flex:1"></div></div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-          <div style="background:rgba(255,255,255,.05);border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:5px"><div class="ph-row s" style="background:rgba(255,255,255,.2)"></div><div class="ph-row m" style="background:rgba(255,255,255,.08)"></div></div>
-          <div style="background:rgba(255,255,255,.05);border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:5px"><div class="ph-row s" style="background:rgba(255,255,255,.2)"></div><div class="ph-row m" style="background:rgba(255,255,255,.08)"></div></div>
-        </div>
-        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:8px">
-          <div style="font-size:.65rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.1em;margin-bottom:2px">GROW Model</div>
-          <div style="display:flex;gap:6px">
-            <div style="background:rgba(255,69,0,.2);border-radius:4px;padding:6px 10px;font-size:.6rem;color:rgba(255,255,255,.7);font-weight:600">Goal</div>
-            <div style="background:rgba(255,255,255,.06);border-radius:4px;padding:6px 10px;font-size:.6rem;color:rgba(255,255,255,.4)">Reality</div>
-            <div style="background:rgba(255,255,255,.06);border-radius:4px;padding:6px 10px;font-size:.6rem;color:rgba(255,255,255,.4)">Obstacles</div>
-            <div style="background:rgba(255,255,255,.06);border-radius:4px;padding:6px 10px;font-size:.6rem;color:rgba(255,255,255,.4)">Way Fwd</div>
-          </div>
-        </div>
-        <div style="background:rgba(255,69,0,.7);border-radius:8px;padding:12px;text-align:center"><div class="ph-row s" style="background:rgba(255,255,255,.5);margin:0 auto;width:100px"></div></div>
+    <div class="annotate-mock" style="background:linear-gradient(160deg,#0a0f1e,#0d2050);position:relative;min-height:480px;overflow:hidden;border-radius:16px;">
+
+      <!-- Panel 1: Homepage -->
+      <div class="anno-panel active" id="panel-1" style="padding:24px;">
+        <img src="images/openblend/homepage.png" style="width:100%;height:100%;object-fit:contain; image-rendering:-webkit-optimize-contrast;" alt="Revitalised homepage">
       </div>
+
+      <!-- Panel 2: Scheduling -->
+      <div class="anno-panel" id="panel-2" style="padding:24px;">
+        <img src="images/openblend/scheduling.png" style="width:100%;height:100%;object-fit:contain; image-rendering:-webkit-optimize-contrast;" alt="Revitalised homepage">
+      </div>
+
+      <!-- Panel 3: Smart agenda -->
+      <div class="anno-panel" id="panel-3" style="padding:24px;">
+        <img src="images/openblend/agenda.png" style="width:100%;height:100%;object-fit:contain; image-rendering:-webkit-optimize-contrast;" alt="Revitalised homepage">
+      </div>
+
+      <!-- Panel 4: GROW discussion -->
+      <div class="anno-panel" id="panel-4" style="padding:24px;">
+       <img src="images/openblend/grow.png" style="width:100%;height:100%;object-fit:contain; image-rendering:-webkit-optimize-contrast;" alt="Revitalised homepage">
+      </div>
+
+      <!-- Panel 5: Wrap-up -->
+      <div class="anno-panel" id="panel-5" style="padding:24px;">
+        <img src="images/openblend/wrap.png" style="width:100%;height:100%;object-fit:contain; image-rendering:-webkit-optimize-contrast;" alt="Revitalised homepage">
+      </div>
+
     </div>
   </div>
+
   <div class="annotate-body">
     <div>
-      <span class="sec-eye">04 &mdash; Solution</span>
-      <h2 class="sec-h">Redesigning the Prepare and Guide phases.</h2>
+      <span class="sec-eye">05 &mdash; Solution</span>
+      <h2 class="sec-h">Making 1:1 conversation very easy</h2>
     </div>
-    <div>
+    <div class="anno-item" data-panel="1">
       <div class="anno-num">1</div>
-      <div class="anno-title">Revitalised homepage (Prepare)</div>
+      <div class="anno-title">Everything starts with a revitalised homepage</div>
       <p class="anno-p">Consolidated snapshots, tasks, manager's 1:1s, and booking actions into a single homepage. Managers can now book a 1:1, start an ad hoc meeting, create an agenda, and view talent snapshots without navigating away.</p>
     </div>
-    <div>
+    <div class="anno-item" data-panel="2">
       <div class="anno-num">2</div>
-      <div class="anno-title">Flexible scheduling (Prepare)</div>
+      <div class="anno-title">Stay connected with recurring 1:1s</div>
       <p class="anno-p">The new booking flow lets users specify frequency, start and end dates, and ownership of recurring 1:1s &mdash; replacing a rigid, single-booking system that actively discouraged regular meetings.</p>
     </div>
-    <div>
+    <div class="anno-item" data-panel="3">
       <div class="anno-num">3</div>
-      <div class="anno-title">AI smart suggestions + shared agenda (Prepare)</div>
+      <div class="anno-title">Effortless agenda prep</div>
       <p class="anno-p">A full-screen agenda preparation experience with AI-assisted smart suggestions based on interaction data. Both talent and manager see the same agenda and can edit it at any time &mdash; no more entering meetings blind.</p>
     </div>
-    <div>
+    <div class="anno-item" data-panel="4">
       <div class="anno-num">4</div>
-      <div class="anno-title">Immersive discussion + GROW model (Guide)</div>
+      <div class="anno-title">Immersive discussion experience</div>
       <p class="anno-p">A split-screen 1:1 experience: agenda panel on the left, discussion panel on the right with embedded user data. The GROW model (Goal, Reality, Obstacles, Way Forward) structures each agenda item, with notes embedded directly into Way Forward.</p>
     </div>
-    <div>
+    <div class="anno-item" data-panel="5">
       <div class="anno-num">5</div>
-      <div class="anno-title">Wrap-up page (Guide)</div>
+      <div class="anno-title">Key takeaways and action items from the 1:1</div>
       <p class="anno-p">A summary page at the end of every 1:1 showing all notes taken, action items created, and the date of the next session &mdash; turning each meeting into a documented record with continuity.</p>
     </div>
   </div>
 </div>
+
+<script>
+(function(){
+  var items = document.querySelectorAll('.anno-item');
+  var panels = document.querySelectorAll('.anno-panel');
+
+  function activatePanel(n) {
+    panels.forEach(function(p){ p.classList.remove('active'); });
+    var target = document.getElementById('panel-' + n);
+    if (target) target.classList.add('active');
+    items.forEach(function(i){
+      i.classList.toggle('active-item', i.dataset.panel === String(n));
+      i.classList.remove('dimmed');
+    });
+  }
+
+  items.forEach(function(item){
+    item.style.cursor = 'pointer';
+    item.addEventListener('click', function(){
+      activatePanel(item.dataset.panel);
+    });
+  });
+
+  // Activate first by default
+  activatePanel(1);
+})();
+</script>
 
 <div class="band" style="background:var(--card);padding-top:60px;padding-bottom:60px">
   <div class="band-inner">
@@ -315,77 +377,107 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
 
 <div class="gallery-wrap">
   <div class="gallery-head">
-    <h3 class="gallery-title">Screens from the redesign</h3>
+    <h3 class="gallery-title">Designs and artifacts</h3>
     <span class="gallery-hint">&#8592; Drag to explore &#8594;</span>
   </div>
   <div class="gallery-scroll">
     <div class="g-item">
-      <div class="g-screen" style="background:linear-gradient(135deg,#0a0f1e,#0d2050)">
-        <div style="width:80%;display:flex;flex-direction:column;gap:10px">
-          <div class="ph-row s" style="background:rgba(255,255,255,.25)"></div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px">
-            <div style="background:rgba(255,69,0,.15);border:1px solid rgba(255,69,0,.3);border-radius:6px;padding:12px;display:flex;flex-direction:column;gap:5px"><div class="ph-row s" style="background:rgba(255,255,255,.25)"></div><div class="ph-row m" style="background:rgba(255,255,255,.12)"></div></div>
-            <div style="background:rgba(255,255,255,.06);border-radius:6px;padding:12px;display:flex;flex-direction:column;gap:5px"><div class="ph-row s" style="background:rgba(255,255,255,.15)"></div><div class="ph-row m" style="background:rgba(255,255,255,.08)"></div></div>
-          </div>
-        </div>
+      <div class="g-screen">
+        <img src="images/openblend/action.png" width="720" height="450" style="width:100%;height:100%;object-fit:cover;" alt="Smart agenda suggestions">
       </div>
-      <div class="g-caption"><div class="g-caption-title">Revitalised homepage</div><div class="g-caption-sub">All key actions in one place</div></div>
+      <div class="g-caption"><div class="g-caption-title">Everything at a glance</div><div class="g-caption-sub">Book, prepare and manage from one place</div></div>
     </div>
     <div class="g-item">
-      <div class="g-screen" style="background:linear-gradient(135deg,#0a0f1e,#0d2050)">
-        <div style="width:80%;display:flex;flex-direction:column;gap:10px">
-          <div class="ph-row m" style="background:rgba(255,255,255,.25)"></div>
-          <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px">
-            <div style="background:rgba(255,69,0,.2);border:1px solid rgba(255,69,0,.35);border-radius:6px;padding:10px;display:flex;align-items:center;gap:8px"><div style="width:14px;height:14px;border-radius:50%;background:rgba(255,69,0,.8)"></div><div class="ph-row m" style="background:rgba(255,255,255,.2);flex:1"></div></div>
-            <div style="background:rgba(255,255,255,.06);border-radius:6px;padding:10px;display:flex;align-items:center;gap:8px"><div style="width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,.2)"></div><div class="ph-row l" style="background:rgba(255,255,255,.1);flex:1"></div></div>
-            <div style="background:rgba(255,255,255,.06);border-radius:6px;padding:10px;display:flex;align-items:center;gap:8px"><div style="width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,.15)"></div><div class="ph-row m" style="background:rgba(255,255,255,.08);flex:1"></div></div>
-          </div>
-        </div>
+      <div class="g-screen">
+        <img src="images/openblend/discuss.png" width="720" height="450" style="width:100%;height:100%;object-fit:cover;" alt="GROW model in discussion">
       </div>
-      <div class="g-caption"><div class="g-caption-title">Smart agenda suggestions</div><div class="g-caption-sub">AI-assisted, context-aware</div></div>
+      <div class="g-caption"><div class="g-caption-title">Inside the conversation</div><div class="g-caption-sub">Structured discussion with the objectives</div></div>
     </div>
     <div class="g-item">
-      <div class="g-screen" style="background:linear-gradient(135deg,#0a0f1e,#0d2050)">
-        <div style="width:80%;display:flex;flex-direction:column;gap:10px">
-          <div class="ph-row s" style="background:rgba(255,255,255,.25)"></div>
-          <div style="display:flex;gap:6px;margin-top:4px">
-            <div style="background:rgba(255,69,0,.2);border-radius:4px;padding:6px 10px;font-size:.6rem;color:rgba(255,255,255,.7);font-weight:600">Goal</div>
-            <div style="background:rgba(255,255,255,.06);border-radius:4px;padding:6px 10px;font-size:.6rem;color:rgba(255,255,255,.4)">Reality</div>
-            <div style="background:rgba(255,255,255,.06);border-radius:4px;padding:6px 10px;font-size:.6rem;color:rgba(255,255,255,.4)">Obstacles</div>
-            <div style="background:rgba(255,255,255,.06);border-radius:4px;padding:6px 10px;font-size:.6rem;color:rgba(255,255,255,.4)">Way Fwd</div>
-          </div>
-          <div style="background:rgba(255,255,255,.05);border-radius:8px;padding:12px;flex:1"><div class="ph-row l" style="background:rgba(255,255,255,.08);height:40px;border-radius:6px"></div></div>
-        </div>
+      <div class="g-screen">
+        <img src="images/openblend/flow.png" width="720" height="450" style="width:100%;height:100%;object-fit:cover;" alt="Wrap-up page">
       </div>
-      <div class="g-caption"><div class="g-caption-title">GROW model in discussion</div><div class="g-caption-sub">Structured conversation flow</div></div>
+      <div class="g-caption"><div class="g-caption-title">Mapping the journey</div><div class="g-caption-sub">End-to-end flow across Prepare & Guide</div></div>
     </div>
     <div class="g-item">
-      <div class="g-screen" style="background:linear-gradient(135deg,#0a0f1e,#0d2050)">
-        <div style="width:80%;display:flex;flex-direction:column;gap:10px">
-          <div class="ph-row s" style="background:rgba(255,255,255,.3)"></div>
-          <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px">
-            <div style="display:flex;align-items:center;gap:8px"><div style="width:14px;height:14px;border-radius:50%;background:rgba(255,69,0,.7);flex-shrink:0"></div><div class="ph-row m" style="background:rgba(255,255,255,.15);flex:1"></div></div>
-            <div style="display:flex;align-items:center;gap:8px"><div style="width:14px;height:14px;border-radius:50%;background:rgba(255,69,0,.4);flex-shrink:0"></div><div class="ph-row l" style="background:rgba(255,255,255,.1);flex:1"></div></div>
-            <div style="display:flex;align-items:center;gap:8px;opacity:.5"><div style="width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,.2);flex-shrink:0"></div><div class="ph-row m" style="background:rgba(255,255,255,.08);flex:1"></div></div>
-          </div>
-        </div>
+      <div class="g-screen">
+        <img src="images/openblend/workshop.png" width="720" height="450" style="width:100%;height:100%;object-fit:cover;" alt="Flexible scheduling">
       </div>
-      <div class="g-caption"><div class="g-caption-title">Wrap-up page</div><div class="g-caption-sub">Notes, actions, and next 1:1 date</div></div>
+      <div class="g-caption"><div class="g-caption-title">Where it all started</div><div class="g-caption-sub">Early explorations with the team</div></div>
     </div>
-    <div class="g-item">
-      <div class="g-screen" style="background:linear-gradient(135deg,#0a0f1e,#0d2050)">
-        <div style="width:80%;display:flex;flex-direction:column;gap:10px">
-          <div class="ph-row m" style="background:rgba(255,255,255,.2)"></div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px">
-            <div style="background:rgba(255,255,255,.07);border-radius:6px;height:40px"></div>
-            <div style="background:rgba(255,69,0,.2);border-radius:6px;height:40px"></div>
-            <div style="background:rgba(255,255,255,.07);border-radius:6px;height:40px"></div>
-            <div style="background:rgba(255,255,255,.07);border-radius:6px;height:40px"></div>
-          </div>
-        </div>
+  </div>
+</div>
+
+<hr class="rule">
+
+<div class="prose-section">
+  <span class="sec-eye">06 &mdash; Testing & Iteration</span>
+  <h2 class="sec-h">Multiple rounds before anything shipped.</h2>
+  <p class="sec-p">To reach the final design, I ran internal tests with company staff and external sessions with customers — managers, talents, and admins. Each round shaped what got refined next.</p>
+  <p class="sec-p">The most useful signal from testers:</p>
+  <ul style="list-style:none;padding:0;margin:0 0 18px;">
+    <li style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px;"><span style="color:var(--accent);font-size:.65rem;flex-shrink:0;line-height:1.85;">✦</span><span class="sec-p" style="margin:0;">Smart suggestions were a hit — the ability to add agenda items from AI suggestions, predefined topics, and custom entries felt natural and useful.</span></li>
+    <li style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px;"><span style="color:var(--accent);font-size:.65rem;flex-shrink:0;line-height:1.85;">✦</span><span class="sec-p" style="margin:0;">Focus and purpose needed to connect to the suggestions — testers wanted the agenda intent to inform what was recommended.</span></li>
+    <li style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px;"><span style="color:var(--accent);font-size:.65rem;flex-shrink:0;line-height:1.85;">✦</span><span class="sec-p" style="margin:0;">Too many clicks to add a single agenda item — this was the clearest friction point and led to a direct simplification.</span></li>
+    <li style="display:flex;align-items:baseline;gap:12px;margin-bottom:0;"><span style="color:var(--accent);font-size:.65rem;flex-shrink:0;line-height:1.85;">✦</span><span class="sec-p" style="margin:0;">The structure of the discussion experience was well received — the new layout was preferred over the old product across the board.</span></li>
+  </ul>
+</div>
+
+<hr class="rule">
+
+<div class="prose-section">
+  <span class="sec-eye">07 &mdash; Launch</span>
+  <h2 class="sec-h">Eight months. One complete redesign.</h2>
+  <p class="sec-p">The new experience launched globally on <strong>October 14, 2024</strong> — the most significant change to the product since the company was founded. After eight months of research, iteration, testing, and refinement, it was one of my proudest achievements.</p>
+  <p class="sec-p">Post-launch, I collaborated with the Marketing and Customer Success teams to build the materials needed to communicate and sell the value of the redesign to customers. The rollout was phased, and the early feedback was overwhelmingly positive.</p>
+  <div class="pullquote">
+    <p>It is one of my proudest achievements — a complete redesign of the tool's most important feature, built to last.</p>
+  </div>
+  <p class="sec-p">Some of the messages that came in from colleagues and customers:</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:8px 0 0;">
+
+    <div style="border:1px solid var(--border);border-radius:16px;padding:24px 28px;background:#fff;grid-column:1/-1;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:600;color:var(--ink);flex-shrink:0;">AR</div>
+        <div><div style="font-size:.875rem;font-weight:600;color:var(--ink);">Anna Rasmussen</div><div style="font-size:.75rem;color:var(--muted);">24 Sep</div></div>
       </div>
-      <div class="g-caption"><div class="g-caption-title">Flexible scheduling</div><div class="g-caption-sub">Frequency and date control</div></div>
+      <p style="font-size:.9375rem;color:var(--ink);line-height:1.75;margin-bottom:10px;">I've just completed my first demo with the new UX to 1800 people. I feel quite emotional. Finally the demo matches our pitch. It was amazing. Really it was. I couldn't be prouder of our product right now. Its bloody brilliant.</p>
+      <p style="font-size:.9375rem;color:var(--ink);line-height:1.75;">Thank you so much to every one of you for all your hard work.</p>
     </div>
+
+    <div style="border:1px solid var(--border);border-radius:16px;padding:24px 28px;background:#fff;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:600;color:var(--ink);flex-shrink:0;">LS</div>
+        <div><div style="font-size:.875rem;font-weight:600;color:var(--ink);">Luke Skinner</div><div style="font-size:.75rem;color:var(--muted);">23 Sep &middot; Breedon Feedback</div></div>
+      </div>
+      <p style="font-size:.9375rem;color:var(--ink);line-height:1.75;margin-bottom:10px;">Just had a chat with Helen at Breedon. She absolutely LOVES the new update. Her support on this is massive and integral to its success.</p>
+      <p style="font-size:.9375rem;color:var(--ink);line-height:1.75;">Just wanted to give a shout out to everyone involved! Great job guys 🙂</p>
+    </div>
+
+    <div style="border:1px solid var(--border);border-radius:16px;padding:24px 28px;background:#fff;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:600;color:var(--ink);flex-shrink:0;">BP</div>
+        <div><div style="font-size:.875rem;font-weight:600;color:var(--ink);">Bilal Pervez</div><div style="font-size:.75rem;color:var(--muted);">25 Jan 2024</div></div>
+      </div>
+      <p style="font-size:.9375rem;color:var(--ink);line-height:1.75;">You got a big round of applause from the whole team for your make 1:1s easy designs — big well done.</p>
+    </div>
+
+    <div style="border:1px solid var(--border);border-radius:16px;padding:24px 28px;background:#fff;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:600;color:var(--ink);flex-shrink:0;">MH</div>
+        <div><div style="font-size:.875rem;font-weight:600;color:var(--ink);">Matt Hutton</div><div style="font-size:.75rem;color:var(--muted);">17 Apr 2024</div></div>
+      </div>
+      <p style="font-size:.9375rem;color:var(--ink);line-height:1.75;">New Agenda design looks brilliant!</p>
+    </div>
+
+    <div style="border:1px solid var(--border);border-radius:16px;padding:24px 28px;background:#fff;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:600;color:var(--ink);flex-shrink:0;">BP</div>
+        <div><div style="font-size:.875rem;font-weight:600;color:var(--ink);">Bilal Pervez</div><div style="font-size:.75rem;color:var(--muted);">09 Apr 2024</div></div>
+      </div>
+      <p style="font-size:.9375rem;color:var(--ink);line-height:1.75;">Very clever solution to the type/template problem we were facing. Good job!</p>
+    </div>
+
   </div>
 </div>
 
@@ -401,7 +493,7 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
 <div style="padding:80px 0 0">
   <div class="learning">
     <span class="learning-eye">What I took away</span>
-    <p class="learning-text">"The biggest UX wins aren't always about adding features &mdash; they're about removing the decision points that make people give up. The blank agenda was the real enemy."</p>
+    <p class="learning-text">The biggest UX wins aren't always about adding features, they're about removing the decision points that make people give up. The blank agenda was the real enemy.</p>
   </div>
 </div>
 
@@ -426,9 +518,10 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
   <div class="ft-links">
     <a href="https://linkedin.com/in/tolulopeogunjuyigbe" target="_blank" class="ft-link">LinkedIn</a>
     <a href="https://twitter.com/TioluwaniR" target="_blank" class="ft-link">Twitter</a>
-    <a href="mailto:toogunv@gmail.com" class="ft-link">Email</a>
+    <a href="/cdn-cgi/l/email-protection#98ecf7f7ffedf6eed8fff5f9f1f4b6fbf7f5" class="ft-link">Email</a>
   </div>
 </footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script>
 (function(){
   var nav=document.getElementById('nav');
@@ -438,8 +531,43 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
     el.addEventListener('mousedown',function(e){d=true;sx=e.pageX-el.offsetLeft;sl=el.scrollLeft;});
     el.addEventListener('mouseleave',function(){d=false;});
     el.addEventListener('mouseup',function(){d=false;});
-    el.addEventListener('mousemove',function(e){if(!d)return;e.preventDefault();el.scrollLeft=sl-(e.pageX-el.offsetLeft-sx)*1.2;});
+    el.addEventListener('mousemove',function(e){if(!d)return;e.preventDefault();var x=e.pageX-el.offsetLeft;el.scrollLeft=sl-(x-sx)*1.5;});
   });
+})();
+</script>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close">&#x2715;</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+(function(){
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lightbox-img');
+
+  function openLb(src, alt) {
+    lbImg.src = src;
+    lbImg.alt = alt || '';
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLb() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.anno-panel img, .g-screen img').forEach(function(img){
+    img.addEventListener('click', function(e){
+      e.stopPropagation();
+      openLb(img.src, img.alt);
+    });
+  });
+
+  document.getElementById('lightbox-close').addEventListener('click', closeLb);
+  lb.addEventListener('click', function(e){ if(e.target === lb) closeLb(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLb(); });
 })();
 </script>
 </body>
